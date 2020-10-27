@@ -458,25 +458,39 @@ public class Exercises {
 		int cupcakesForOrphanage = totalLemonCupcakes - cupcakesLeftHome;
 		int boxesGivenAway = cupcakesForOrphanage / cupcakesPerBox;
 		System.out.println(boxesGivenAway);
-		System.out.println(cupcakesForOrphanage);
 
         /*
         45. Susie's mom prepared 74 carrot sticks for breakfast. If the carrots
         were served equally to 12 people, how many carrot sticks were left
         uneaten?
         */
+		
+		int carrotSticks = 74;
+		int people = 12;
+		int carrotsUneaten = carrotSticks % people;
+		System.out.println(carrotsUneaten);
 
         /*
         46. Susie and her sister gathered all 98 of their teddy bears and placed
         them on the shelves in their bedroom. If every shelf can carry a
         maximum of 7 teddy bears, how many shelves will be filled?
         */
+		
+		int teddyBears = 98;
+		int bearsPerShelf = 7;
+		int shelvesFilledWithBears = teddyBears / bearsPerShelf;
+		System.out.println(shelvesFilledWithBears);
 
         /*
         47. Susie’s mother collected all family pictures and wanted to place all of
         them in an album. If an album can contain 20 pictures, how many
         albums will she need if there are 480 pictures?
         */
+		
+		int picsPerAlbum = 20;
+		int pictures = 480;
+		int albumsNeeded = pictures / picsPerAlbum;
+		System.out.println(albumsNeeded);
 
         /*
         48. Joe, Susie’s brother, collected all 94 trading cards scattered in his
@@ -484,17 +498,33 @@ public class Exercises {
         cards, how many boxes were filled and how many cards are there in
         the unfilled box?
         */
+		
+		int tradingCards = 94;
+		int cardsPerBox = 8;
+		int boxesFilled = tradingCards / cardsPerBox;
+		int leftOverCards = tradingCards % cardsPerBox;
+		System.out.println(boxesFilled + " and " + leftOverCards);
 
         /*
         49. Susie’s father repaired the bookshelves in the reading room. If he has
         210 books to be distributed equally on the 10 shelves he repaired,
         how many books will each shelf contain?
         */
+		
+		int books = 210;
+		int repairedShelves = 10;
+		int booksPerShelf = books / repairedShelves;
+		System.out.println(booksPerShelf);
 
         /*
         50. Cristina baked 17 croissants. If she planned to serve this equally to
         her seven guests, how many will each have?
         */
+		
+		double cristinasCroissants = 17;
+		double guests = 7;
+		double croissantsPerGuest = cristinasCroissants / guests;
+		System.out.printf("%.2f\n", croissantsPerGuest);
 
         /*
             CHALLENGE PROBLEMS
@@ -506,6 +536,18 @@ public class Exercises {
         Hint: Calculate the hourly rate for each painter, combine them, and then divide the total walls in feet by the combined hourly rate of the painters.
         Challenge: How many days will it take the pair to paint 623 rooms assuming they work 8 hours a day?.
         */
+		
+		double billsAverage = (12 * 14) / 2.15;
+		double jillsAverage = (12 * 14) / 1.90;
+		double combinedHourlyRate = billsAverage + jillsAverage;
+		double projectRoomsArea = 5 * (12 * 14);
+		double hoursToPaintRooms = projectRoomsArea / combinedHourlyRate;
+		System.out.printf("%.2f\n", hoursToPaintRooms);
+		
+		double totalAreaOf623Rooms = 623 * (12 * 14);
+		double totalHoursToPaint = totalAreaOf623Rooms / combinedHourlyRate;
+		double daysToPaint623Rooms = totalHoursToPaint / 8;
+		System.out.printf("%.2f\n", daysToPaint623Rooms);
 
         /*
         Create and assign variables to hold your first name, last name, and middle initial. Using concatenation,
@@ -514,6 +556,12 @@ public class Exercises {
         with a period.
         Example: "Hopper, Grace B."
         */
+		
+		String firstName = "Anna";
+		String lastName = "Lizon";
+		String middleInitial = "K.";
+		String fullName = lastName + ", " + firstName + " " + middleInitial;
+		System.out.println(fullName);
 
         /*
         The distance between New York and Chicago is 800 miles, and the train has already travelled 537 miles.
@@ -521,6 +569,12 @@ public class Exercises {
         Hint: The percent completed is the miles already travelled divided by the total miles.
         Challenge: Display as an integer value between 0 and 100 using casts.
         */
+		
+		double totalDistance = 800;
+		double traveledDistance = 537;
+		double fractionCompleted = traveledDistance / totalDistance;
+		int percentCompleted = (int) (fractionCompleted * 100);
+		System.out.println(percentCompleted + "%");
 
 
 	}
