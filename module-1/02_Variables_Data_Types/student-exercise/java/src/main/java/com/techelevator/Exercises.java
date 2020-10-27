@@ -78,17 +78,31 @@ public class Exercises {
         many toucans in all?
         */
 
-		
+		int initialToucans = 2;
+		int newToucans = 1;
+		int toucansOnTreeLimb = initialToucans + newToucans;
+		System.out.println(toucansOnTreeLimb);
 		
         /*
         9. There are 4 squirrels in a tree with 2 nuts. How many more squirrels
         are there than nuts?
         */
+		
+		int squirrels = 4;
+		int nuts = 2;
+		int nutsVersusSquirrels = squirrels - nuts;
+		System.out.println(nutsVersusSquirrels);
 
         /*
         10. Mrs. Hilt found a quarter, 1 dime, and 2 nickels. How much money did
         she find?
         */
+
+		double quarter = 0.25;
+		double dime = 0.10;
+		double twoNickels = 0.10;
+		double moneyHiltFound = quarter + dime + twoNickels;
+		System.out.printf("%.2f\n",moneyHiltFound);
 
         /*
         11. Mrs. Hilt's favorite first grade classes are baking muffins. Mrs. Brier's
@@ -96,28 +110,55 @@ public class Exercises {
         Mrs. Flannery's class bakes 17 muffins. How many muffins does first
         grade bake in all?
         */
+		
+		int brierMuffins = 18;
+		int macAdamsMuffins = 20;
+		int flanneryMuffins = 17;
+		int totalMuffins = brierMuffins + macAdamsMuffins + flanneryMuffins;
+		System.out.println(totalMuffins);
 
         /*
         12. Mrs. Hilt bought a yoyo for 24 cents and a whistle for 14 cents. How
         much did she spend in all for the two toys?
         */
+		
+		double vovoPrice = 0.24;
+		double whistlePrice = 0.14;
+		double totalPrice = vovoPrice + whistlePrice;
+		System.out.printf("%.2f\n", totalPrice);
 
         /*
         13. Mrs. Hilt made 5 Rice Krispie Treats. She used 8 large marshmallows
         and 10 mini marshmallows.How many marshmallows did she use
         altogether?
         */
+		
+		int largeMarshmallows = 8;
+		int miniMarshmallows = 10;
+		int totalMarshmallows = largeMarshmallows + miniMarshmallows;
+		System.out.println(totalMarshmallows);
 
         /*
         14. At Mrs. Hilt's house, there was 29 inches of snow, and Brecknock
         Elementary School received 17 inches of snow. How much more snow
         did Mrs. Hilt's house have?
         */
+		
+		int hiltHouseSnow = 29;
+		int brecknockSnow = 17;
+		int snowDifference = hiltHouseSnow - brecknockSnow;
+		System.out.println(snowDifference);
 
         /*
         15. Mrs. Hilt has $10. She spends $3 on a toy truck and $2 on a pencil
         case. How much money does she have left?
         */
+		
+		int hiltsTotalMoney = 10;
+		int toyTruckCost = 3;
+		int pencilCaseCost = 2;
+		int moneyLeftOver = hiltsTotalMoney - toyTruckCost - pencilCaseCost;
+		System.out.println(moneyLeftOver);
 
         /*
         16. Josh had 16 marbles in his collection. He lost 7 marbles. How many
