@@ -164,52 +164,102 @@ public class Exercises {
         16. Josh had 16 marbles in his collection. He lost 7 marbles. How many
         marbles does he have now?
         */
+		
+		int initialMarbles = 16;
+		int lostMarbles = 7;
+		int totalMarbles = initialMarbles - lostMarbles;
+		System.out.println(totalMarbles);
 
         /*
         17. Megan has 19 seashells. How many more seashells does she need to
         find to have 25 seashells in her collection?
         */
+		
+		int megansSeashells = 19;
+		int totalSeashellsDesired = 25;
+		int seashellsNeeded = totalSeashellsDesired - megansSeashells;
+		System.out.println(seashellsNeeded);
 
         /*
         18. Brad has 17 balloons. 8 balloons are red and the rest are green. How
         many green balloons does Brad have?
         */
+		
+		int totalBalloons = 17;
+		int redBalloons = 8;
+		int greenBalloons = totalBalloons - redBalloons;
+		System.out.println(greenBalloons);
 
         /*
         19. There are 38 books on the shelf. Marta put 10 more books on the shelf.
         How many books are on the shelf now?
         */
+		
+		int booksOnShelf = 38;
+		int newBooksAdded = 10;
+		int totalBooks = booksOnShelf + newBooksAdded;
+		System.out.println(totalBooks);
 
         /*
         20. A bee has 6 legs. How many legs do 8 bees have?
         */
+		
+		int beeLegs = 6;
+		int bees = 8;
+		int totalBeeLegs = beeLegs * bees;
+		System.out.println(totalBeeLegs);
 
         /*
         21. Mrs. Hilt bought an ice cream cone for 99 cents. How much would 2 ice
         cream cones cost?
         */
+		
+		double iceCreamConeCost = 0.99;
+		double iceCreamConeCostTotal = iceCreamConeCost * 2;
+		System.out.println(iceCreamConeCostTotal);
 
         /*
         22. Mrs. Hilt wants to make a border around her garden. She needs 125
         rocks to complete the border. She has 64 rocks. How many more rocks
         does she need to complete the border?
         */
+		
+		int hiltsCurrentRocks = 64;
+		int totalRocks = 125;
+		int rocksNeeded = totalRocks - hiltsCurrentRocks;
+		System.out.println(rocksNeeded);
+		
 
         /*
         23. Mrs. Hilt had 38 marbles. She lost 15 of them. How many marbles does
         she have left?
         */
+		
+		int marblesHad = 38;
+		int marblesLost = 15;
+		int marblesLeft = marblesHad - marblesLost;
+		System.out.println(marblesLeft);
 
         /*
         24. Mrs. Hilt and her sister drove to a concert 78 miles away. They drove 32
         miles and then stopped for gas. How many miles did they have left to drive?
         */
+		
+		int milesToConcert = 78;
+		int milesDriven = 32;
+		int milesLeft = milesToConcert - milesDriven;
+		System.out.println(milesLeft);
 
         /*
         25. Mrs. Hilt spent 1 hour and 30 minutes shoveling snow on Saturday
         morning and 45 minutes shoveling snow on Saturday afternoon. How
         much total time did she spend shoveling snow?
         */
+		
+		int morningMinutes = 90;
+		int afternoonMinutes = 45;
+		int totalShovelingTime = morningMinutes + afternoonMinutes;
+		System.out.println(totalShovelingTime);
 
         /*
         26. Mrs. Hilt bought 6 hot dogs. Each hot dog cost 50 cents. How much
