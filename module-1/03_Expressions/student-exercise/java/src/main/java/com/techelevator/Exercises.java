@@ -427,6 +427,9 @@ public class Exercises {
 	 less20(20) → false
 	 */
 	public boolean less20(int n) {
+		if(((n + 1) % 20 == 0) || ((n + 2) % 20 == 0)) {
+			return true;
+		}
 		return false;
 	}
 
@@ -438,6 +441,9 @@ public class Exercises {
 	 nearTen(19) → true
 	 */
 	public boolean nearTen(int num) {
+		if(((num + 2) % 10 == 0) || ((num - 2) % 10 == 0) || ((num + 1) % 10 == 0) || ((num - 1) % 10 == 0) || (num % 10 == 0)) {
+			return true;
+		}
 		return false;
 	}
 
@@ -449,7 +455,10 @@ public class Exercises {
 	 teenSum(13, 2) → 19
 	 */
 	public int teenSum(int a, int b) {
-		return 0;
+		if((a >= 13 && a <= 19) || (b >= 13 && b <= 19)) {
+			return 19;
+		}
+		return a + b;
 	}
 
 	/*
@@ -460,6 +469,11 @@ public class Exercises {
 	 answerCell(true, false, false) → false
 	 */
 	public boolean answerCell(boolean isMorning, boolean isMom, boolean isAsleep) {
+		if(isAsleep) {
+			return false;
+		} else if(isMorning && isMom || !isMorning) {
+			return true;
+		}
 		return false;
 	}
 
@@ -473,7 +487,12 @@ public class Exercises {
 	 teaParty(20, 6) → 2
 	 */
 	public int teaParty(int tea, int candy) {
-		return 0;
+		if(tea < 5 || candy < 5) {
+			return 0;
+		}else if(candy >= 2 * tea || tea >= 2 * candy) {
+			return 2;
+		}
+		return 1;
 	}
 
 	/*
