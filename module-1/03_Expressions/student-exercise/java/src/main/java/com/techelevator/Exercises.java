@@ -341,6 +341,15 @@ public class Exercises {
 	 alarmClock(0, false) → "10:00"
 	 */
 	public String alarmClock(int day, boolean vacation) {
+		if(vacation) {
+			if(day >= 1 && day <= 5) {
+				return "10:00";
+			} return "off";
+		} else if(!vacation) {
+			if(day >= 1 && day <= 5) {
+				return "7:00";
+			} return "10:00";
+		}
 		return "";
 	}
 
@@ -352,6 +361,13 @@ public class Exercises {
 	 in1To10(11, true) → true
 	 */
 	public boolean in1To10(int n, boolean outsideMode) {
+		if(outsideMode) {
+			if(n <= 1 || n >= 10) {
+				return true;
+			}
+		}else if(n >= 1 && n <= 10) {
+			return true;
+		}
 		return false;
 	}
 
@@ -364,6 +380,9 @@ public class Exercises {
 	 specialEleven(24) → false
 	 */
 	public boolean specialEleven(int n) {
+		if((n % 11 == 0) || (n % 11 == 0 + 1)) {
+			return true;
+		}
 		return false;
 	}
 
@@ -375,6 +394,9 @@ public class Exercises {
 	 more20(22) → true
 	 */
 	public boolean more20(int n) {
+		if((n % 20 == 0 + 1) || (n % 20 == 0 + 2)) {
+			return true;
+		}
 		return false;
 	}
 
@@ -386,6 +408,13 @@ public class Exercises {
 	 old35(15) → false
 	 */
 	public boolean old35(int n) {
+		if(n % 3 == 0 && n % 5 == 0) {
+			return false;
+		} else if(n % 3 == 0) {
+			return true;
+		} else if(n % 5 == 0) {
+			return true;
+		}
 		return false;
 	}
 
