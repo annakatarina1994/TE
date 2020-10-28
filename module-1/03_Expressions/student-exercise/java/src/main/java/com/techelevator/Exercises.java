@@ -152,6 +152,9 @@ public class Exercises {
 	 hasTeen(20, 10, 13) → true
 	 */
 	public boolean hasTeen(int a, int b, int c) {
+		if((a >= 13 && a <= 19) || (b >= 13 && b <= 19) || (c >= 13 && c <= 19)) {
+			return true;
+		}
 		return false;
 	}
 
@@ -163,6 +166,11 @@ public class Exercises {
 	 loneTeen(13, 13) → false
 	 */
 	public boolean loneTeen(int a, int b) {
+		if((a >= 13 && a <= 19) && (b < 13 || b > 19)) {
+			return true;
+		} else if((b >= 13 && b <= 19) && (a < 13 || a > 19)) {
+			return true;
+		}
 		return false;
 	}
 
@@ -173,6 +181,13 @@ public class Exercises {
 	 intMax(3, 2, 1) → 3
 	 */
 	public int intMax(int a, int b, int c) {
+		if((a >= b) && (a >= c)) {
+			return a;
+		} else if((b >= a) && (b >= c)) {
+			return b;
+		} else if((c >= a) && (c >= b)) {
+			return c;
+		}
 		return 0;
 	}
 
@@ -184,6 +199,11 @@ public class Exercises {
 	 in3050(40, 50) → true
 	 */
 	public boolean in3050(int a, int b) {
+		if((a >= 30 && a <= 40) && (b >= 30 && b <= 40)) {
+			return true;
+		} else if ((a >= 40 && a <= 50) && (b >= 40 && b <= 50)) {
+			return true;
+		}
 		return false;
 	}
 
@@ -195,6 +215,15 @@ public class Exercises {
 	 max1020(11, 9) → 11
 	 */
 	public int max1020(int a, int b) {
+		if((a >= 10 && a <= 20) && (b >= 10 && b <= 20)) {
+			if(a > b) {
+				return a;
+			} return b;
+		} else if((a >= 10 && a <= 20) && !(b >= 10 && b <= 20)) {
+			return a;
+		} else if ((b >= 10 && b <= 20) && !(a >= 10 && a <= 20)) {
+			return b;
+		}
 		return 0;
 	}
 
