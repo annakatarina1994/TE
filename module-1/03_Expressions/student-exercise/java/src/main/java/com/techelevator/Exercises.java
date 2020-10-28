@@ -237,6 +237,11 @@ public class Exercises {
 	 cigarParty(70, true) → true
 	 */
 	public boolean cigarParty(int cigars, boolean isWeekend) {
+		if((cigars >= 40 && cigars <= 60) && (!isWeekend)) {
+			return true;
+		}else if ((cigars >= 40) && (isWeekend)) {
+			return true;
+		}
 		return false;
 	}
 
@@ -252,8 +257,14 @@ public class Exercises {
 	 dateFashion(5, 5) → 1
 	 */
 	public int dateFashion(int you, int date) {
-		return 0;
-	}
+		if((you >= 8 && date > 2) || (date >= 8 && you > 2)) {
+			return 2;
+		}else if (you <= 2 || date <= 2) {
+			return 0;
+		}
+		return 1;
+		}
+	
 
 	/*
 	 18. The squirrels in Palo Alto spend most of the day playing. In particular, they play if the temperature
@@ -264,6 +275,11 @@ public class Exercises {
 	 squirrelPlay(95, true) → true
 	 */
 	public boolean squirrelPlay(int temp, boolean isSummer) {
+		if((temp >= 60 && temp <= 90) && (!isSummer)) {
+			return true;
+		} else if ((temp >= 60 && temp <= 100) && (isSummer)) {
+			return true;
+		}
 		return false;
 	}
 
@@ -288,6 +304,16 @@ public class Exercises {
      yourCakeAndEatItToo(11.00, false) → "special"
      */
     public String yourCakeAndEatItToo(double mealAmount, boolean isBirthday) {
+    	if(isBirthday) {
+    		mealAmount += 5;
+    	}
+    	if(mealAmount <= 10) {
+    		return "standard";
+    	} else if(mealAmount > 10 && mealAmount <= 15) {
+    		return "special";
+    	} else if(mealAmount > 15) {
+    		return "ginormous";
+    	}
         return "";
     }
 
@@ -299,7 +325,10 @@ public class Exercises {
 	 sortaSum(10, 11) → 21
 	 */
 	public int sortaSum(int a, int b) {
-		return 0;
+		if((a + b >= 10) && (a + b <= 19)) {
+			return 20;
+		}
+		return a + b;
 	}
 
 	/*
