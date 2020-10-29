@@ -10,7 +10,11 @@ public class Exercises {
 	 sleepIn(false, true) → true
 	 */
 	public boolean sleepIn(boolean weekday, boolean vacation) {
+<<<<<<< HEAD
 		if(!weekday || vacation) {
+=======
+		if (weekday == false || vacation == true) {
+>>>>>>> 950b9d05a492255c58c4efe46826b4e4022d45db
 			return true;
 		}
 		return false;
@@ -25,7 +29,11 @@ public class Exercises {
 	 monkeyTrouble(true, false) → false
 	 */
 	public boolean monkeyTrouble(boolean aSmile, boolean bSmile) {
+<<<<<<< HEAD
 		if((aSmile && bSmile) || (!aSmile && !bSmile)) {
+=======
+		if ((aSmile && bSmile) || (!aSmile && !bSmile)) {
+>>>>>>> 950b9d05a492255c58c4efe46826b4e4022d45db
 			return true;
 		}
 		return false;
