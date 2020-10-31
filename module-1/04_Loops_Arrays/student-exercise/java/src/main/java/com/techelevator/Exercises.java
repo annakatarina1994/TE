@@ -185,14 +185,17 @@ public class Exercises {
 	 sum13([1, 2, 2, 1, 13, 3]) → 6
 	 sum13([1, 2, 2, 1, 13, 3, 4]) → 10
 	 */
+	
 	public int sum13(int[] nums) {
 		int sum = 0;
 		for(int i = 0; i < nums.length; i++) {
-			if(nums[i] == 13) {
-				
+			if(nums[i] != 13) {
+				sum += nums[i];
+			} else if(nums[i] == 13) {
+				i += 1;
 			}
 		}
-		return 0;
+		return sum;
 	}
 
 	/*
@@ -203,10 +206,10 @@ public class Exercises {
 	 */
 	public boolean has22(int[] nums) {
 		for(int i = 0; i < nums.length; i++) {
-			if(nums[i] == 2 && nums[i - 1] == 2) {
-				return true;
-			} else if(nums[i] == 2 && nums[i + 1] == 2) {
-				return true;
+			if(i != nums.length - 1) {
+				if(nums[i] == 2 && nums[i + 1] == 2) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -220,11 +223,11 @@ public class Exercises {
 	 */
 	public boolean lucky13(int[] nums) {
 		for(int i = 0; i < nums.length; i++) {
-			if(nums[i] != 1 && nums[i] != 3) {
-				
+			if(nums[i] == 1 || nums[i] == 3) {
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 
 	/*
@@ -234,8 +237,14 @@ public class Exercises {
 	 sum28([1, 2, 3, 4]) → false
 	 */
 	public boolean sum28(int[] nums) {
+		int sum = 0;
 		for(int i = 0; i < nums.length; i++) {
-			
+			if(nums[i] == 2) {
+				sum += nums[i];
+			}
+		}
+		if(sum == 8) {
+			return true;
 		}
 		return false;
 	}
