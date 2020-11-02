@@ -112,7 +112,11 @@ public class Exercises {
 	 comboString("aaa", "b") → "baaab"
 	 */
 	public String comboString(String a, String b) {
-		
+		if(a.length() > b.length()) {
+			return b + a + b;
+		} else if(b.length() > a.length()) {
+			return a + b + a;
+		}
 		return null;
 	}
 
@@ -124,7 +128,9 @@ public class Exercises {
 	 nonStart("shotl", "java") → "hotlava"
 	 */
 	public String nonStart(String a, String b) {
-		return null;
+		String aChar = a.substring(1);
+		String bChar = b.substring(1);
+		return aChar + bChar;
 	}
 
 	/*
@@ -135,7 +141,9 @@ public class Exercises {
 	 left2("Hi") → "Hi"
 	 */
 	public String left2(String str) {
-		return null;
+		String firstTwo = str.substring(0, 2);
+		String theOtherLetters = str.substring(2);
+		return theOtherLetters + firstTwo;
 	}
 
 	/*
@@ -146,7 +154,9 @@ public class Exercises {
 	 right2("Hi") → "Hi"
 	 */
 	public String right2(String str) {
-		return null;
+		String lastTwo = str.substring(str.length() - 2, str.length());
+		String firstLetters = str.substring(0, str.length() - 2);
+		return lastTwo + firstLetters;
 	}
 
 	/*
@@ -157,7 +167,12 @@ public class Exercises {
 	 theEnd("oh", true) → "o"
 	 */
 	public String theEnd(String str, boolean front) {
-		return null;
+		if(front) {
+			String firstLetter = str.substring(0, 1);
+			return firstLetter;
+		}
+		String lastLetter = str.substring(str.length() - 1, str.length());
+		return lastLetter;
 	}
 
 	/*
@@ -168,7 +183,8 @@ public class Exercises {
 	 withoutEnd2("ab") → ""
 	 */
 	public String withoutEnd2(String str) {
-		return null;
+		String middle = str.substring(1, str.length() - 1);
+		return middle;
 	}
 
 	/*
@@ -179,7 +195,8 @@ public class Exercises {
 	 middleTwo("Practice") → "ct"
 	 */
 	public String middleTwo(String str) {
-		return null;
+		String middleTwo = str.substring(str.length() / 2 - 1, str.length() / 2 + 1);
+		return middleTwo;
 	}
 
 	/*
@@ -189,6 +206,9 @@ public class Exercises {
 	 endsLy("oddy") → false
 	 */
 	public boolean endsLy(String str) {
+		if(str.endsWith("ly")) {
+			return true;
+		}
 		return false;
 	}
 
@@ -200,7 +220,9 @@ public class Exercises {
 	 nTwice("Chocolate", 1) → "Ce"
 	 */
 	public String nTwice(String str, int n) {
-		return null;
+		String firstPart = str.substring(0, n);
+		String secondPart = str.substring(str.length() - n, str.length());
+		return firstPart + secondPart;
 	}
 
 	/*
