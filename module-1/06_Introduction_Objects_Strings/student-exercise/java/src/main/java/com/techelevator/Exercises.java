@@ -183,6 +183,9 @@ public class Exercises {
 	 withoutEnd2("ab") → ""
 	 */
 	public String withoutEnd2(String str) {
+		if(str.length() <= 2) {
+			return "";
+		}
 		String middle = str.substring(1, str.length() - 1);
 		return middle;
 	}
@@ -234,6 +237,13 @@ public class Exercises {
 	 twoChar("java", 3) → "ja"
 	 */
 	public String twoChar(String str, int index) {
+		if(index < str.length() - 1 && index >= 0) {
+			String twoChar = str.substring(index, index + 2);
+			return twoChar;
+		} else if(index >= str.length() - 1 || index < 0) {
+			String firstTwo = str.substring(0, 2);
+			return firstTwo;
+		}
 		return null;
 	}
 
@@ -245,7 +255,8 @@ public class Exercises {
 	 middleThree("solving") → "lvi"
 	 */
 	public String middleThree(String str) {
-		return null;
+		String middle3 = str.substring((str.length() / 2) - 1, (str.length() / 2) + 2);
+		return middle3;
 	}
 
 	/*
@@ -257,8 +268,21 @@ public class Exercises {
 	 hasBad("xxbadxx") → false
 	 */
 	public boolean hasBad(String str) {
-		return false;
-	}
+		if(str.length() >= 4) {
+			if((str.substring(0, 3).equals("bad")) || (str.substring(1, 4).contentEquals("bad"))) {
+				return true;
+			}
+		} else if(str.length() == 3) {
+			if((str.substring(0, 3).equals("bad"))){
+				return true;
+			}
+		} else if(str.length() < 3) {
+			return false;
+		}
+			return false;
+		}
+		
+
 
 	/*
 	 Given a string and a non-negative int n, return a larger string that is n copies of the original string.
@@ -267,6 +291,7 @@ public class Exercises {
 	 stringTimes("Hi", 1) → "Hi"
 	 */
 	public String stringTimes(String str, int n) {
+		
 		return null;
 	}
 
