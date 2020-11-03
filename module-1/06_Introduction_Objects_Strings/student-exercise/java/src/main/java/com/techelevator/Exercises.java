@@ -275,7 +275,7 @@ public class Exercises {
 		} else if(str.length() == 3) {
 			if((str.substring(0, 3).equals("bad"))){
 				return true;
-			}
+			} 
 		} else if(str.length() < 3) {
 			return false;
 		}
@@ -291,8 +291,8 @@ public class Exercises {
 	 stringTimes("Hi", 1) → "Hi"
 	 */
 	public String stringTimes(String str, int n) {
-		
-		return null;
+		String repeatedStr = str.repeat(n);
+		return repeatedStr;
 	}
 
 	/*
@@ -303,7 +303,11 @@ public class Exercises {
 	 frontTimes("Abc", 3) → "AbcAbcAbc"
 	 */
 	public String frontTimes(String str, int n) {
-		return null;
+		if(str.length() >= 3) {
+		String front = str.substring(0, 3).repeat(n);
+		return front;
+		}
+		return str.repeat(n);
 	}
 
 	/*
