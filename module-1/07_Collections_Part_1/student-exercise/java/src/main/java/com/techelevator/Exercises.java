@@ -1,6 +1,8 @@
 package com.techelevator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Exercises {
@@ -16,7 +18,8 @@ public class Exercises {
 	 array2List( {"Left", "Right", "Forward", "Back"} )  ->  ["Left", "Right", "Forward", "Back"]
 	 */
 	public List<String> array2List(String[] stringArray) {
-		return null;
+		List<String> stringList = Arrays.asList(stringArray);
+		return stringList;
 	}
 
 	/*
@@ -26,7 +29,8 @@ public class Exercises {
 	 list2Array( ["Left", "Right", "Forward", "Back"] )  ->  {"Left", "Right", "Forward", "Back"}
 	 */
 	public String[] list2Array(List<String> stringList) {
-		return null;
+		String[] stringArray = stringList.toArray(new String[0]);
+		return stringArray;
 	}
 
 	/*
@@ -37,7 +41,13 @@ public class Exercises {
 	 no4LetterWords( {"Jack", "Jill", "Jane", "John", "Jim"} )  ->  ["Jim"]
 	 */
 	public List<String> no4LetterWords(String[] stringArray) {
-		return null;
+		List<String> strArrayList = new ArrayList<>();
+		for(String string : stringArray) {
+			if(string.length() != 4 ) {
+				strArrayList.add(string);
+			}
+		}
+		return strArrayList;
 	}
 
 	/*
@@ -47,7 +57,12 @@ public class Exercises {
 	 arrayInt2ListDouble( {84, 99, 3285, 13, 877} ) -> [42, 49.5, 1642.5, 6.5, 438.5]
 	 */
 	public List<Double> arrayInt2ListDouble(int[] intArray) {
-		return null;
+		List<Double> doubleArrayList = new ArrayList<>();
+		for(Integer num: intArray) {
+			double divided = (double) num / 2;
+			doubleArrayList.add(divided);
+		}
+		return doubleArrayList;
 	}
 
 	/*
@@ -57,7 +72,8 @@ public class Exercises {
 	 findLargest( [34070, 1380, 81238, 7782, 234, 64362, 627] ) -> 64362
 	 */
 	public Integer findLargest(List<Integer> integerList) {
-		return null;
+		int maxValue = Collections.max(integerList);
+		return maxValue;
 	}
 
 	/*
@@ -67,7 +83,14 @@ public class Exercises {
 	 oddOnly( {734, 233, 782, 811, 3, 9999} ) -> [233, 811, 3, 9999]
 	 */
 	public List<Integer> oddOnly(Integer[] integerArray) {
-		return null;
+		List<Integer> oddIntegers = new ArrayList<>();
+		for(Integer integer: integerArray) {
+			if(integer % 2 != 0) {
+				oddIntegers.add(integer);
+			}
+		}
+		
+		return oddIntegers;
 	}
 
 	/*
@@ -78,6 +101,10 @@ public class Exercises {
 	 foundIntTwice( [9, 23, 44, 2, 88, 44], 44) -> true
 	 */
 	public boolean foundIntTwice(List<Integer> integerList, int intToFind) {
+		int foundMultiple = Collections.frequency(integerList, intToFind);
+		if(foundMultiple >= 2) {
+			return true;
+		}
 		return false;
 	}
 
@@ -95,6 +122,16 @@ public class Exercises {
 	 equals "1")
 	 */
 	public List<String> fizzBuzzList(Integer[] integerArray) {
+		List<Integer> stringInts = Arrays.asList(integerArray);
+		for(Integer num: stringInts) {
+			if(num % 3 == 0) {
+				String fizz = num.toString();
+				fizz = "Fizz";
+			} else if(num % 5 == 0) {
+				String buzz = num.toString();
+				buzz = "Buzz";
+			}
+		}
 		return null;
 	}
 

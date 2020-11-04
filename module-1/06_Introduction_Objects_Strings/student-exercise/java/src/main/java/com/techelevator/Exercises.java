@@ -317,7 +317,13 @@ public class Exercises {
 	 countXX("xxxx") →
 	 */
 	public int countXX(String str) {
-		return 0;
+		int count = 0;
+		for(int i = 0; i < str.length() - 1; i++) {
+			if(str.substring(i, i + 2).equals("xx")) {
+				count++;
+			}
+		}
+		return count;
 	}
 
 	/*
@@ -327,6 +333,10 @@ public class Exercises {
 	 doubleX("xxxxx") → true
 	 */
 	public boolean doubleX(String str) {
+		int firstX = str.indexOf('x');
+		if(firstX < str.length() - 1 && str.charAt(firstX + 1) == ('x')) {
+			return true;
+		}
 		return false;
 	}
 
@@ -337,7 +347,11 @@ public class Exercises {
 	 stringBits("Heeololeo") → "Hello"
 	 */
 	public String stringBits(String str) {
-		return null;
+		String everyOther = "";
+		for(int i = 0; i < str.length(); i += 2) {
+			everyOther = everyOther + str.charAt(i);
+		}
+		return everyOther;
 	}
 
 	/*
@@ -347,7 +361,11 @@ public class Exercises {
 	 stringSplosion("ab") → "aab"
 	 */
 	public String stringSplosion(String str) {
-		return null;
+		String stuttering = "";
+		for(int i = 0; i < str.length(); i++) {
+			stuttering += str.substring(0, i + 1);
+		}
+		return stuttering;
 	}
 
 	/*
@@ -358,7 +376,17 @@ public class Exercises {
 	 last2("axxxaaxx") → 2
 	 */
 	public int last2(String str) {
-		return 0;
+		if(str.length() < 3) {
+			return 0;
+		} 
+		String last2Chars = str.substring(str.length() - 2);
+		int count = 0;
+		for(int i = 0; i < str.length() - 2; i++) {
+			if(str.substring(i, i + 2).equals(last2Chars)) {
+				count++;
+			}
+		}
+		return count;
 	}
 
 	/*
@@ -369,7 +397,13 @@ public class Exercises {
 	 stringX("xabxxxcdx") → "xabcdx"
 	 */
 	public String stringX(String str) {
-		return null;
+		if(str.length() <= 2) {
+			return str;
+		}
+		String middleSection = str.substring(1, str.length() - 1);
+		middleSection = middleSection.replace("x", "");
+		String noMiddleExes = str.charAt(0) + middleSection + str.charAt(str.length() - 1);
+		return noMiddleExes;
 	}
 
 	/*
@@ -379,7 +413,17 @@ public class Exercises {
 	 altPairs("CodingHorror") → "Congrr"
 	 */
 	public String altPairs(String str) {
-		return null;
+		String altResult = "";
+		for(int i = 0; i < str.length() - 1; i += 4) {
+			String subString1 = str.substring(i);
+			altResult += subString1;
+			if((i + 1) < str.length()) {
+				String subString2 = str.substring(i + 1);
+				altResult += subString2;
+				return altResult;
+			}
+		}
+		return altResult;
 	}
 
 	/*
@@ -390,6 +434,7 @@ public class Exercises {
 	 stringYak("yak123ya") → "123ya"
 	 */
 	public String stringYak(String str) {
+		
 		return null;
 	}
 
