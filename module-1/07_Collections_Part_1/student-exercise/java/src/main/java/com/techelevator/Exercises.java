@@ -122,17 +122,27 @@ public class Exercises {
 	 equals "1")
 	 */
 	public List<String> fizzBuzzList(Integer[] integerArray) {
-		List<Integer> stringInts = Arrays.asList(integerArray);
-		for(Integer num: stringInts) {
-			if(num % 3 == 0) {
-				String fizz = num.toString();
-				fizz = "Fizz";
+		List<String> stringList = new ArrayList<>();
+		for(Integer num : integerArray) {
+			if(num % 3 == 0 && num % 5 == 0) {
+				String fizzBuzz = num.toString();
+				fizzBuzz = "FizzBuzz";
+				stringList.add(fizzBuzz);
 			} else if(num % 5 == 0) {
 				String buzz = num.toString();
 				buzz = "Buzz";
+				stringList.add(buzz);
+			} else if(num % 3 == 0) {
+				String fizz = num.toString();
+				fizz = "Fizz";
+				stringList.add(fizz);
+			}
+				else {
+			String numString = num.toString();
+			stringList.add(numString);
 			}
 		}
-		return null;
+		return stringList;
 	}
 
 	/*
@@ -143,7 +153,29 @@ public class Exercises {
 	 interleaveLists( [1, 2, 3], [4, 5, 6] )  ->  [1, 4, 2, 5, 3, 6]
 	 */
 	public List<Integer> interleaveLists(List<Integer> listOne, List<Integer> listTwo) {
-		return null;
+		List<Integer> leavedList = new ArrayList<>();
+		if(listOne.size() >= listTwo.size()) {
+			int i;
+			for(i = 0; i < listTwo.size(); i++) {  // listOne {1 , 2, 3, 4, 5, 6}  listTwo {3, 5, 6}
+				leavedList.add(listOne.get(i));
+				leavedList.add(listTwo.get(i));
+			}
+			for (; i < listOne.size(); i++) {
+				leavedList.add(listOne.get(i));  //leavedList = {1, 3, 2, 5, 3, 6, 4 ,5, 6}
+			}
+			
+			
+		} else if(listTwo.size() > listOne.size()) {
+			int i;
+			for(i = 0; i < listOne.size(); i++) {
+				leavedList.add(listOne.get(i));
+				leavedList.add(listTwo.get(i));
+			}
+			for(; i < listTwo.size(); i++) {
+				leavedList.add(listTwo.get(i));
+			}
+		}
+		return leavedList;
 	}
 
 }

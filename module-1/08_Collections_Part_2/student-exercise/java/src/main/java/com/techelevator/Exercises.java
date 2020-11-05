@@ -34,7 +34,28 @@ public class Exercises {
 	 *
 	 */
 	public String animalGroupName(String animalName) {
-		return null;
+		Map<String, String> animalMap = new HashMap<>();
+		animalMap.put("rhino", "Crash");
+		animalMap.put("giraffe", "Tower");
+		animalMap.put("elephant", "Herd");
+		animalMap.put("lion", "Pride");
+		animalMap.put("crow", "Murder");
+		animalMap.put("pigeon", "Kit");
+		animalMap.put("flamingo", "Pat");
+		animalMap.put("deer", "Herd");
+		animalMap.put("dog", "Pack");
+		animalMap.put("crocodile", "Float");
+		
+		
+		
+		if(animalName == null) {
+			return "unknown";
+		} else if(!animalMap.containsKey(animalName.toLowerCase())) {
+			return "unknown";
+		} else {
+			String animalGroup = animalMap.get(animalName.toLowerCase());
+			return animalGroup;
+		}
 	}
 
 	/*
@@ -60,12 +81,29 @@ public class Exercises {
 	 *
 	 */
 	public double isItOnSale(String itemNumber) {
-		return -1.0;
+		Map<String, Double> discountMap = new HashMap<>();
+		discountMap.put("KITCHEN4001", 0.20);
+		discountMap.put("GARAGE1070", 0.15);
+		discountMap.put("LIVINGROOM", 0.10);
+		discountMap.put("KITCHEN6073", 0.10);
+		discountMap.put("BEDROOM3434", 0.60);
+		discountMap.put("BATH0073", 0.15);
+		
+		if(itemNumber == null) {
+			return 0.0;
+		} else if(itemNumber.equals("")) {
+			return 0.0;
+		} else if(!discountMap.containsKey(itemNumber.toUpperCase())) {
+			return 0.0;
+		} else {
+		double discount = discountMap.get(itemNumber.toUpperCase());
+		return discount;
+		}
 	}
 
 	/*
 	 * Modify and return the given Map as follows: if "Peter" has more than 0 money, transfer half of it to "Paul",
-	 * but only if Paul has less than $10s.
+	 * but only if Paul has less than 1000s.
 	 *
 	 * Note, monetary amounts are specified in cents: penny=1, nickel=5, ... $1=100, ... $10=1000, ...
 	 *
@@ -74,7 +112,19 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> robPeterToPayPaul(Map<String, Integer> peterPaul) {
-		return null;
+		
+		
+		
+		int petersMoney = peterPaul.get("Peter");
+		int paulsMoney = peterPaul.get("Paul");
+		if(petersMoney > 0 && paulsMoney < 1000) {
+			paulsMoney = paulsMoney + (petersMoney / 2);
+			petersMoney = petersMoney / 2;
+			
+			peterPaul.replace("Peter", petersMoney);
+			peterPaul.replace("Paul", paulsMoney);
+		}
+		return peterPaul;
 	}
 
 	/*
@@ -87,7 +137,15 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> peterPaulPartnership(Map<String, Integer> peterPaul) {
-		return null;
+		int petersMoney = peterPaul.get("Peter");
+		int paulsMoney = peterPaul.get("Paul");
+		if(petersMoney >= 50 && paulsMoney >= 100) {
+			int peterPaulMoney = (petersMoney / 4) + (paulsMoney / 4);
+			peterPaul.put("PeterPaulPartnership", peterPaulMoney);
+			return peterPaul;
+		}
+		
+		return peterPaul;
 	}
 
 	/*
@@ -99,7 +157,13 @@ public class Exercises {
 	 * beginningAndEnding(["muddy", "good", "moat", "good", "night"]) → {"g": "d", "m": "t", "n": "t"}
 	 */
 	public Map<String, String> beginningAndEnding(String[] words) {
-		return null;
+		Map<String, String> letters = new HashMap<>();
+		for(String word: words) {
+			String firstLetter = word.substring(0, 1);
+			String lastLetter = word.substring(word.length() - 1, word.length());
+			letters.put(firstLetter, lastLetter);
+		}
+		return letters;
 	}
 
 	/*
@@ -115,7 +179,17 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> wordCount(String[] words) {
-		return null;
+		Map<String, Integer> wordMap = new HashMap<>();
+		for(String word : words) {
+			if(wordMap.containsKey(word) == false) {
+				wordMap.put(word, 1);
+			} else {
+				int count = wordMap.get(word);
+				count++;
+				wordMap.put(word, count);
+			}
+		}
+		return wordMap;
 	}
 
 	/*
@@ -143,6 +217,9 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Boolean> wordMultiple(String[] words) {
+		for(String word: words) {
+			
+		}
 		return null;
 	}
 
