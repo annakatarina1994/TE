@@ -44,8 +44,6 @@ public class Airplane {
 		return availableCoachSeats;
 	}
 	
-	public boolean reserveSeats(boolean forFirstClass, int totalNumberOfSeats) {
-		
-	}
+
 	
 }
