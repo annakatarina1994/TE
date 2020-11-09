@@ -29,6 +29,7 @@ public class Airplane {
 	}
 
 	public int getAvailableFirstClassSeats() {
+		availableFirstClassSeats = totalFirstClassSeats - bookedFirstClassSeats;
 		return availableFirstClassSeats;
 	}
 
@@ -41,9 +42,18 @@ public class Airplane {
 	}
 
 	public int getAvailableCoachSeats() {
+		availableCoachSeats = totalCoachSeats - bookedCoachSeats;
 		return availableCoachSeats;
 	}
 	
-
 	
+	public boolean reserveSeats(boolean forFirstClass, int totalNumberOfSeats) {
+		if(forFirstClass == true && getAvailableFirstClassSeats() >= totalNumberOfSeats) {
+			bookedFirstClassSeats += totalNumberOfSeats;
+			return true;
+		} else if(forFirstClass == false && getAvailableCoachSeats() >= totalNumberOfSeats) {
+			bookedCoachSeats += totalNumberOfSeats;
+			return true;
+		} return false;
+	}
 }
