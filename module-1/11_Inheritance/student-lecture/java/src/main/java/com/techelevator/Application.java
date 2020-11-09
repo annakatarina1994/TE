@@ -11,8 +11,16 @@ public class Application {
         Auction generalAuction = new Auction("Tech Elevator t-shirt");
 
         generalAuction.placeBid(new Bid("Josh", 1));
+        System.out.println("Bidder: " + generalAuction.getHighBid().getBidder());
+        System.out.println("Amount: " + generalAuction.getHighBid().getBidAmount());
+        
         generalAuction.placeBid(new Bid("Fonz", 23));
+        System.out.println("Bidder: " + generalAuction.getHighBid().getBidder());
+        System.out.println("Amount: " + generalAuction.getHighBid().getBidAmount());
+        
         generalAuction.placeBid(new Bid("Rick Astley", 13));
+        System.out.println("Bidder: " + generalAuction.getHighBid().getBidder());
+        System.out.println("Amount: " + generalAuction.getHighBid().getBidAmount());
         //....
         //....
         // This might go on until the auction runs out of time or hits a max # of bids
