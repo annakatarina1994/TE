@@ -14,12 +14,13 @@ public class CheckingAccount extends BankAccount {
 	
 	@Override
 	public int withdraw(int amountToWithdraw) {
-		if((getBalance() - amountToWithdraw < 0) && (getBalance() - amountToWithdraw > -100)) {
+		int newBalance = getBalance() - amountToWithdraw;
+		if((newBalance < 0) && (newBalance > -100)) {
 			super.withdraw(amountToWithdraw + 10);
 			return getBalance();
-		} else if(getBalance() - amountToWithdraw < -100) {
+		} else if(newBalance < -100) {
 			return getBalance();
-		} else if(getBalance() - amountToWithdraw > 0) {
+		} else if(newBalance > 0) {
 			super.withdraw(amountToWithdraw);
 			return getBalance();
 		}
