@@ -7,9 +7,27 @@ public class OldMacdonald {
 	public static void main(String[] args) {
 		
 		List<FarmAnimal> animals = new ArrayList<>();
-		animals.add(new Cow());
-		animals.add(new Pig());
-		animals.add(new Chicken());
+		
+		for(int i = 0; i < 8; i++) {
+			int random = (int) (Math.random() * 4);
+			switch (random) {
+			case 0:
+				animals.add(new Cow());
+				animals.get(i).sleep();
+				break;
+			case 1:
+				animals.add(new Pig());
+				animals.get(i).sleep();
+				break;
+			case 2:
+				animals.add(new Cat());
+				animals.get(i).sleep();
+				break;
+			default:
+				animals.add(new Chicken());
+				animals.get(i).sleep();
+			}
+		}
 
 	for (FarmAnimal sing : animals) {
 			String name = sing.getName();
