@@ -86,7 +86,6 @@ public class LectureTest {
 		 * state "Expected: true Actual: false", which sometimes isn't much help in figuring out
 		 * what went wrong */
 		Assert.assertTrue("String did not start with Hello as expected.", startsWithHello); // Assert
-		Assert.assertFalse("String did not come back with World as expected", theString.startsWith("World"));
 	}
 
 	@Test
