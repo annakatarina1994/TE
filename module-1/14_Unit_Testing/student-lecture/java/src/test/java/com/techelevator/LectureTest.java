@@ -64,9 +64,9 @@ public class LectureTest {
 		/* The assertEquals method validates that two values are equal and
 		 * fails the test if they are not equal */
 
-		String theString = "Java"; // Arrange
+		String theString = "Java Rocks!"; // Arrange
 		int length = theString.length(); // Act
-		Assert.assertEquals(4, length); // Assert
+		Assert.assertEquals(11, length); // Assert
 	}
 
 	@Test
