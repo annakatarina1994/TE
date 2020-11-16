@@ -8,7 +8,11 @@ public class StringBitsTest {
 
 	@Test
 	public void getBits_() {
-		fail("Not yet implemented");
+		StringBits everyOther = new StringBits();
+		String str = "Random";
+		String expected = "Rno";
+		String actual = everyOther.getBits(str);
+		assertEquals(expected, actual);
 	}
 
 }

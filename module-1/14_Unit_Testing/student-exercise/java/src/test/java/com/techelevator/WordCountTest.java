@@ -21,4 +21,16 @@ public class WordCountTest {
 		assertEquals(expected, actual);
 	}
 
+	
+	@Test
+	public void add_one_word_twice_get_value_of_2_back() {
+		WordCount wordCount = new WordCount();
+		
+		Map<String, Integer> expected = new HashMap<>();
+		expected.put("Flo", 2);
+		
+		String[] words = {"Flo", "Flo"};
+		Map<String, Integer> actual = wordCount.getCount(words);
+		assertEquals(expected, actual);
+	}
 }
