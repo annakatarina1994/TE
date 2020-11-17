@@ -19,16 +19,23 @@ public class WordSearch {
 	System.out.println("Please enter the term you'd like to search for: ");
 	String searchTerm = input.nextLine();
 	
-	LineNumberReader lineReader = new LineNumberReader(new FileReader(aliceFile));
+	System.out.println("Should this search be case sensitive? (Y/N): ");
+	String caseResponse = input.nextLine();
+	if(caseResponse.startsWith("N")) {
+		searchTerm = searchTerm.toLowerCase();
+	}
+	
+	int lineNumber = 1;
 	
 	try (Scanner fileScanner = new Scanner(aliceFile)) {
 		while (fileScanner.hasNextLine()) {
-			String line = lineReader.readLine();
+			String line = fileScanner.nextLine();
 			if(line.contains(searchTerm)) {
-				System.out.println(lineReader.getLineNumber() + ": " + line);
+				System.out.println(lineNumber + ": " + line);
 				}
+			lineNumber++;
 			}
-		lineReader.close();
+		
 		}
 	}
 }
