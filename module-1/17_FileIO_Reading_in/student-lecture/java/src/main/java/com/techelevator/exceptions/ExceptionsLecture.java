@@ -16,27 +16,30 @@ public class ExceptionsLecture {
 		System.out.println("The following cities: ");
 		String[] cities = new String[] { "Cleveland", "Columbus", "Cincinatti" };
 	
+		try {
 			System.out.println(cities[0]);
 			System.out.println(cities[1]);
 			System.out.println(cities[2]);
-	//		System.out.println(cities[3]);  // This statement will throw an ArrayIndexOutOfBoundsException
+			System.out.println(cities[3]);  // This statement will throw an ArrayIndexOutOfBoundsException
 			System.out.println("are all in Ohio."); // This line won't execute because the previous statement throws an Exception
-		
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("XXX Uh-oh, something went wrong... XXX");
+		}
 			
+		System.out.println("After the catch block");
+	
+		/* try/catch blocks will also catch Exceptions that are thrown from method calls further down the stack */
+		try {
+			System.out.println("Hey ya'll, watch this!");
+			doSomethingDangerous();  // throws an ArrayIndexOutOfBoundsException
+			System.out.println("See, I told you nothing would go wrong!");
+		} catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("Hmmmm, error thrown in our method!");
+		}
 			
 			
 		System.out.println();
 	
-		/* try/catch blocks will also catch Exceptions that are thrown from method calls further down the stack */
-/*		
-			System.out.println("Hey ya'll, watch this!");
-			doSomethingDangerous();  // throws an ArrayIndexOutOfBoundsException
-			System.out.println("See, I told you nothing would go wrong!");
-		
-			
-			
-		System.out.println();
-*/		
 		/* catch statements can take advantage of polymorphism. The catch block will handle any Exception that 
 		 * matches the declared Exception type, including subclasses of the declared type */
 /*
@@ -94,7 +97,7 @@ public class ExceptionsLecture {
 */
 	}
 	
-	private static void doSomethingDangerous() {
+	private static void doSomethingDangerous() { //checks to see if there is exception handling
 		int[] numbers = new int[5];
 		for(int i = 0; i < 10; i++) {
 			numbers[i] = i;  // this line will throw an Exception once i reaches 5
