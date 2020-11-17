@@ -18,18 +18,17 @@ public class WordSearch {
 	
 	System.out.println("Please enter the term you'd like to search for: ");
 	String searchTerm = input.nextLine();
-	LineNumberReader lineReader = new LineNumberReader(new FileReader(aliceFile));
 	
-	int lineNumber = 0;
+	LineNumberReader lineReader = new LineNumberReader(new FileReader(aliceFile));
 	
 	try (Scanner fileScanner = new Scanner(aliceFile)) {
 		while (fileScanner.hasNextLine()) {
-			String line = fileScanner.nextLine();
+			String line = lineReader.readLine();
 			if(line.contains(searchTerm)) {
-				System.out.println(lineNumber + ": " + line);
-				
+				System.out.println(lineReader.getLineNumber() + ": " + line);
+				}
 			}
-			}
+		lineReader.close();
 		}
 	}
 }
