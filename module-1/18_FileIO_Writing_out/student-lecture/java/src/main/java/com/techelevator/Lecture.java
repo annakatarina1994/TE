@@ -103,6 +103,14 @@ public class Lecture {
 		 * 
 		 * this will automatically flush and close the file
 		 */
+		
+		//WRITE TO A FILE
+		/*
+		 * File object
+		 * PrintWriter writer = new PrintWriter(fileObj);
+		 * 
+		 * writer.print or wrtier.println
+		 */
 		 
 	}
 

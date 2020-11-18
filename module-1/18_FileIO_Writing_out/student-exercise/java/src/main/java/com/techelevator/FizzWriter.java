@@ -15,17 +15,20 @@ public class FizzWriter{
 		File fizzBuzzFile = new File(filePath);
 		fizzBuzzFile.createNewFile();
 	
-		try(PrintWriter writer = new PrintWriter(new FileWriter(filePath, true))){
+//		try(PrintWriter writer = new PrintWriter(new FileWriter(filePath, true))){
 		
-		for(int i = 0; i <= 300; i++) {
+		try(PrintWriter writer = new PrintWriter(filePath)){
+		
+		for(int i = 1; i <= 300; i++) {
 			if(i % 15 == 0) {
-				writer.write("FizzBuzz");
+				writer.println("FizzBuzz");
 			} else if(i % 5 == 0) {
-				writer.write("Buzz");
+				writer.println("Buzz");
 			} else if(i % 3 == 0) {
-				writer.write("Fizz");
+				writer.println("Fizz");
 			} else {
-				writer.write(i);
+				String str = Integer.toString(i);
+				writer.println(str);
 				}
 			}
 		}

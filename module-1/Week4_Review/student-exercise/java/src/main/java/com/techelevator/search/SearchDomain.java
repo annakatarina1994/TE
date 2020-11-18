@@ -54,7 +54,18 @@ public class SearchDomain {
 	private List<String> buildDomain() throws SearchDomainException {
 		List<String> files = new ArrayList<>();
 		// Step Three: Complete the buildDomain method
-
+		File dir = new File(folder);
+		if(dir.isDirectory()) {
+			// loop through all the files in the folder/directory and add names to files List above
+			File[] fileArray = dir.listFiles();
+			for(int i = 0; i< fileArray.length; i++) {
+//				try {
+				files.add(fileArray[i].getName());
+//				} catch(IOException e) {
+//					throw new SearchDomainException(e.getMessage());
+//				}
+			}
+		}
 
 			
 		return files;
