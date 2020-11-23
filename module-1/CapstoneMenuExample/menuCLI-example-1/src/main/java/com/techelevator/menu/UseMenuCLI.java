@@ -1,5 +1,10 @@
 package com.techelevator.menu;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 /***********************************************************************************
  * This will demonstrate how to use the Menu process given to
  * students in the Tech Elevator Java bootcamp:
@@ -41,7 +46,7 @@ import com.techelevator.view.Menu; // Menu processing class
 
 public class UseMenuCLI { // Class representing the MenuCLI process to be used
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 
 		Menu menu = new Menu(System.in, System.out); // Define Menu object with input and output sources (keyboard,
 														// screen)
@@ -78,12 +83,15 @@ public class UseMenuCLI { // Class representing the MenuCLI process to be used
 		while (shouldLoop) { // Loop while loop control variable is true
 
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
-
+			System.out.println(choice + " was selected.");
+			
+			
 			/****************************************************************************
 			 * Examine choice made and process accordingly
 			 ****************************************************************************/
 			switch (choice) {
 				case MAIN_MENU_OPTION_1: {
+					System.out.println("Blue");
 					// process for option 1 choice - good place for a method call
 					break;
 				}
@@ -114,6 +122,17 @@ public class UseMenuCLI { // Class representing the MenuCLI process to be used
 
 		final String[] INSTRUCTOR_OPTIONS = { "Frank", "Joe", "Josh", "Craig", "Dan", "Brett", "End Process" };
 
+		List<String> studentOptions = new ArrayList<>();
+		studentOptions.add("Bob");
+		studentOptions.add("Joe");
+		studentOptions.add("Mark");
+		studentOptions.add("Craig");
+		studentOptions.add("Kevin");
+		studentOptions.add("Quit");
+		
+		
+		
+		
 		shouldLoop = true; // Loop control variable
 
 		while (shouldLoop) { // Loop while loop control variable is true
@@ -127,8 +146,10 @@ public class UseMenuCLI { // Class representing the MenuCLI process to be used
 			 * the user to pick one 3. return the constant defined in the menu option String
 			 * array passed to it for the option the user picked
 			 ****************************************************************************/
-
-			String choice = (String) menu.getChoiceFromOptions(INSTRUCTOR_OPTIONS);
+			
+			Menu menu1 = new Menu(System.in, new FileOutputStream("Data.txt", true));
+//			String choice = (String) menu.getChoiceFromOptions(INSTRUCTOR_OPTIONS);
+			String choice = (String) menu1.getChoiceFromOptions(studentOptions.toArray());
 
 			/****************************************************************************
 			 * Examine choice made and process accordingly
@@ -160,7 +181,7 @@ public class UseMenuCLI { // Class representing the MenuCLI process to be used
 				// process for option "Craig" choice - good place for a method call
 				break;
 			}
-			case "End Process": {
+			case "Quit": {
 				// do any end of loop processing
 				shouldLoop = false;
 				break;

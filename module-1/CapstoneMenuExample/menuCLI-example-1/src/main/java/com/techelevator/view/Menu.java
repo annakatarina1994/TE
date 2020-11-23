@@ -27,15 +27,15 @@ public class Menu {
 	private Object getChoiceFromUserInput(Object[] options) {
 		Object choice = null;
 		String userInput = in.nextLine();
-//		try {
+		try {
 			int selectedOption = Integer.valueOf(userInput);
 			if(selectedOption > 0 && selectedOption <= options.length) {
 				choice = options[selectedOption - 1];
 			}
-//		} catch(NumberFormatException e) {
+		} catch(NumberFormatException e) {
 			 //eat the exception -- means do not do anything
 			 //an error message will be displayed below since choice will be null
-//		}
+		}
 		if(choice == null) {
 			out.println("\n*** "+userInput+" is not a valid option ***\n");
 		}
