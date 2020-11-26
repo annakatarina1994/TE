@@ -155,11 +155,23 @@
         JOIN film_actor ON actor.actor_id = film_actor.actor_id
         JOIN film ON film.film_id = film_actor.film_id
         JOIN inventory ON inventory.film_id = film.film_id
-        JOIN rental ON rental.inventory_id = rental.inventory_id
+        JOIN rental ON rental.inventory_id = inventory.inventory_id
         GROUP BY actor.actor_id
         ORDER BY rentals DESC
         LIMIT 10;
 
 -- 20. The top 5 â€œComedyâ€? actors ranked by number of rentals of films in the â€œComedyâ€? category starring that actor 
 -- (#1 should have 87 rentals and #5 should have 72 rentals)
+        SELECT actor.first_name, actor.last_name, category.name, COUNT(rental.rental_id) AS rentals
+        FROM actor
+        JOIN film_actor ON actor.actor_id = film_actor.actor_id
+        JOIN film ON film.film_id = film_actor.film_id
+        JOIN inventory ON inventory.film_id = film.film_id
+        JOIN rental ON rental.inventory_id = inventory.inventory_id
+        JOIN film_category ON film_category.film_id = film.film_id
+        JOIN category ON category.category_id = film_category.category_id
+        WHERE category.name = 'Comedy'
+        GROUP BY actor.first_name, actor.last_name, category.name
+        ORDER BY rentals DESC
+        LIMIT 5;
         
