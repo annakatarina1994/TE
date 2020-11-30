@@ -49,6 +49,11 @@
         VALUES (996, 17);
         
         SELECT * FROM film_category;
+        
+ -- The quicker way:
+ -- INSERT INTO film_category (film_id, category_id)
+        -- VALUES ((SELECT film_id FROM film WHERE title = 'Euclidean PI'), SELECT category_id FROM category
+        -- WHERE name = 'Mathmagical'));
 
 -- 6. Mathmagical films always have a "G" rating, adjust all Mathmagical films
 -- accordingly.
