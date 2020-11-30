@@ -2,23 +2,76 @@
 -- The following changes are applied to the "dvdstore" database.**
 
 -- 1. Add actors, Hampton Avenue, and Lisa Byway to the actor table.
+        INSERT INTO actor (actor_id, first_name, last_name)
+        VALUES (201, 'Hampton', 'Avenue');
+        
+        INSERT INTO actor(actor_id, first_name, last_name)
+        VALUES (202, 'Lisa', 'Byway');
 
 -- 2. Add "Euclidean PI", "The epic story of Euclid as a pizza delivery boy in
 -- ancient Greece", to the film table. The movie was released in 2008 in English.
 -- Since its an epic, the run length is 3hrs and 18mins. There are no special
 -- features, the film speaks for itself, and doesn't need any gimmicks.
+        INSERT INTO film (film_id, title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost)
+        VALUES (1001, 'Euclidean PI', 'The epic story of Euclid as a pizza delivery boy in ancient Greece', 2008, 1, 6, 3.99, 198, 15.99);
+        
+        SELECT * FROM film;
 
 -- 3. Hampton Avenue plays Euclid, while Lisa Byway plays his slightly
 -- overprotective mother, in the film, "Euclidean PI". Add them to the film.
+        INSERT INTO film_actor(actor_id, film_id)
+        VALUES(201, 1001);
+        
+        INSERT INTO film_actor(actor_id, film_id)
+        VALUES (202, 1001);
+        
+        SELECT * FROM film_actor;
 
 -- 4. Add Mathmagical to the category table.
+        INSERT INTO category(category_id, name)
+        VALUES (17, 'Mathmagical');
 
 -- 5. Assign the Mathmagical category to the following films, "Euclidean PI",
 -- "EGG IGBY", "KARATE MOON", "RANDOM GO", and "YOUNG LANGUAGE"
+        INSERT INTO film_category(film_id, category_id)
+        VALUES (1001, 17);
+        
+        INSERT INTO film_category(film_id, category_id)
+        VALUES (274, 17);
+        
+        INSERT INTO film_category(film_id, category_id)
+        VALUES (494, 17);
+        
+        INSERT INTO film_category(film_id, category_id)
+        VALUES (714, 17);
+        
+        INSERT INTO film_category(film_id, category_id)
+        VALUES (996, 17);
+        
+        SELECT * FROM film_category;
 
 -- 6. Mathmagical films always have a "G" rating, adjust all Mathmagical films
 -- accordingly.
 -- (5 rows affected)
+      UPDATE film
+        SET rating = 'G'
+        WHERE film_id = 1001;  
+        
+      UPDATE film
+        SET rating = 'G'
+        WHERE film_id = 274;
+        
+      UPDATE film
+        SET rating = 'G'
+        WHERE film_id = 494;
+        
+      UPDATE film
+        SET rating = 'G'
+        WHERE film_id = 714;
+        
+      UPDATE film
+        SET rating = 'G'
+        WHERE film_id = 996;
 
 -- 7. Add a copy of "Euclidean PI" to all the stores.
 
