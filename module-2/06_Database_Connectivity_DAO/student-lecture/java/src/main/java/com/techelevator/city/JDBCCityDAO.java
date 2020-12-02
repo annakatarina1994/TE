@@ -31,34 +31,59 @@ public class JDBCCityDAO implements CityDAO {
 	@Override
 	public City findCityById(long id) {
 		City theCity = null;
-
-
+		String sqlFindCityById = "SELECT id, name, countrycode, district, population FROM city WHERE id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindCityById, id);
+		
+		// let's call a helper method called mapRowToCity
+		if(results.next()) {
+			theCity = mapRowToCity(results); // "convert" the psql row to a java object called theCity
+		}
+		
 		return theCity;
 	}
 
 	@Override
 	public List<City> findCityByCountryCode(String countryCode) {
 		ArrayList<City> cities = new ArrayList<>();
-	
+		String sqlFindCityByCountryCode = "SELECT id, name, countrycode, district, population FROM city WHERE countrycode = ?";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindCityByCountryCode, countryCode);
+		
+		while(results.next()) {
+			City theCity = mapRowToCity(results);
+			cities.add(theCity);
+		}
 	
 		return cities;
 	}
 
 	@Override
 	public List<City> findCityByDistrict(String district) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<City> cities = new ArrayList<>();
+		String sqlFindCityByDistrict = "SELECT id, name, countrycode, district, population FROM city WHERE countrycode = ?";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindCityByDistrict, district);
+		
+		while(results.next()) {
+			City theCity = mapRowToCity(results);
+			cities.add(theCity);
+		}
+	
+		return cities;
 	}
 
 	@Override
 	public void update(City city) {
-		// TODO Auto-generated method stub
+		String sql = "UPDATE city SET name = ?, countrycode = ?, district = ?, population = ? WHERE id = ?";
+		
+		jdbcTemplate.update(city.getName(), city.getCountryCode(), city.getDistrict(), city.getPopulation(), city.getId());
+		
 		
 	}
 
 	@Override
 	public void delete(long id) {
-		// TODO Auto-generated method stub
+		jdbcTemplate.update("DELETE FROM city WHERE id = ?", id);
 		
 	}
 
@@ -73,9 +98,9 @@ public class JDBCCityDAO implements CityDAO {
 
 	private City mapRowToCity(SqlRowSet results) {
 		// map the sql columns (results.getXX()) to the POJO (Java object)
-		City theCity;
+		City theCity; // creates empty city object
 		theCity = new City();
-		theCity.setId(results.getLong("id"));
+		theCity.setId(results.getLong("id")); // maps from the psql id column to the city object attribute
 		theCity.setName(results.getString("name"));
 		theCity.setCountryCode(results.getString("countrycode"));
 		theCity.setDistrict(results.getString("district"));

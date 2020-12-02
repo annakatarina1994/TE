@@ -17,6 +17,7 @@ public class DAOExample {
 		
 		CityDAO dao = new JDBCCityDAO(worldDataSource);
 		
+		// create a new java city object
 		City smallville = new City();
 		smallville.setCountryCode("USA");
 		smallville.setDistrict("KS");
@@ -25,9 +26,9 @@ public class DAOExample {
 		
 		dao.save(smallville);
 		
-//		City theCity = dao.findCityById(smallville.getId());
-		
-		
+		City theCity = dao.findCityById(smallville.getId());
+		System.out.println("id = " + theCity.getId());
+		System.out.println("name = " + theCity.getName());		
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.techelevator.city;
 
-public class City {
+public class City { // java class representing a city table object from the world database - POJO
 	private Long id;
 	private String name;
 	private String countryCode;
