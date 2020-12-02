@@ -33,17 +33,46 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 
 	@Override
 	public List<Employee> searchEmployeesByName(String firstNameSearch, String lastNameSearch) {
-		return new ArrayList<>();
+		List<Employee> employees = new ArrayList<>();
+		String sqlFindEmployeeByName = "SELECT * FROM employee WHERE first_name ILIKE '%'||?||'%' AND last_name ILIKE '%'||?||'%'";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindEmployeeByName, firstNameSearch, lastNameSearch);
+		
+		while(results.next()) {
+			Employee emp = mapRowToEmployee(results);
+			employees.add(emp);
+		}
+		
+		return employees;
 	}
 
 	@Override
 	public List<Employee> getEmployeesByDepartmentId(long id) {
-		return new ArrayList<>();
+		List<Employee> employees = new ArrayList<>();
+		String sqlFindEmpsById = "SELECT * FROM employee WHERE department_id = ?";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindEmpsById, id);
+		
+		while(results.next()) {
+			Employee emp = mapRowToEmployee(results);
+			employees.add(emp);
+		}
+		return employees;
 	}
 
 	@Override
 	public List<Employee> getEmployeesWithoutProjects() {
-		return new ArrayList<>();
+		List<Employee> employees = new ArrayList<>();
+		String sqlNoProjectsEmps = "SELECT * FROM employee" + 
+									" LEFT JOIN project_employee ON employee.employee_id = project_employee.employee_id" + 
+									" WHERE project_employee.project_id IS NULL";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlNoProjectsEmps);
+		
+		while(results.next()) {
+			Employee emp = mapRowToEmployee(results);
+			employees.add(emp);
+		}
+		return employees;
 	}
 
 	@Override
