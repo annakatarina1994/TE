@@ -33,7 +33,17 @@ public class JDBCDepartmentDAO implements DepartmentDAO {
 
 	@Override
 	public List<Department> searchDepartmentsByName(String nameSearch) {
-		return new ArrayList<>();
+		List<Department> departments = new ArrayList<>();
+		String sqlSearchDeptByName = "SELECT * FROM department WHERE name ILIKE '%'||?||'%'";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchDeptByName, nameSearch);
+		
+		while(results.next()) {
+			Department dept = mapRowToDepartment(results);
+			departments.add(dept);
+		}
+		
+		return departments;
 	}
 
 	@Override
@@ -45,15 +55,24 @@ public class JDBCDepartmentDAO implements DepartmentDAO {
 
 	@Override
 	public Department createDepartment(Department newDepartment) {
-//		String sqlInsertDept = "INSERT INTO department (department_id, name)" + 
-//								" VALUES (?, ?)";
-//		jdbcTemplate.update(sqlInsertDept, newDepartment.getId(), newDepartment.getName());
+		String sqlNewDept = "INSERT INTO department (name) VALUES (?)";
+		jdbcTemplate.update(sqlNewDept, newDepartment.getName());
 		return newDepartment;
 	}
 
 	@Override
 	public Department getDepartmentById(Long id) {
-		return null;
+		Department dept = null;
+		
+		String sqlFindDeptById = "SELECT department_id, name FROM department " +
+								" WHERE departmet_id = ?";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindDeptById, id);
+		
+		if(results.next()) {
+			dept = mapRowToDepartment(results);
+		}
+		return dept;
 	}
 	
 	private Department mapRowToDepartment(SqlRowSet results) {
