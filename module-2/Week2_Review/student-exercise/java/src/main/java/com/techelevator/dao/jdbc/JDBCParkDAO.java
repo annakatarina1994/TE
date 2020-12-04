@@ -18,9 +18,46 @@ public class JDBCParkDAO implements ParkDAO {
     }
 
     @Override
+	public Park createNewPark(Park park) {
+		String sqlCreatePark = "INSERT INTO park (name, location, establish_date, area, visitors, description)" +
+								" VALUES (?, ?, ?, ?, ?, ?) RETURNING park_id";
+		
+		Object[] obj = new Object[] 
+				{ park.getName(), park.getLocation(), park.getEstablishDate(), 
+						park.getArea(), park.getVisitors(), park.getDescription()};
+		
+		Integer id = jdbcTemplate.queryForObject(sqlCreatePark, obj, Integer.class );
+		
+		park.setParkId(id);
+		
+		return park;
+	}
+
+
+
+	@Override
+	public void deletePark(int parkId) {
+		String sqlDeletePark = "DELETE FROM park WHERE park_id = ?";
+		
+		jdbcTemplate.update(sqlDeletePark, parkId);
+		
+	}
+    
+    
+    @Override
     public List<Park> getAllParks() {
-        return null;
+     	List<Park> parks = new ArrayList<Park>();
+    	String sqlSearchForParks = "SELECT * FROM park ORDER BY location";
+    	
+    	SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForParks);
+    	
+    	while (results.next()) {
+    		Park thePark = mapRowToPark(results);
+    		parks.add(thePark);
+    	}
+        return parks;
     }
+
 
     private Park mapRowToPark(SqlRowSet results) {
         Park park = new Park();
@@ -33,5 +70,9 @@ public class JDBCParkDAO implements ParkDAO {
         park.setDescription(results.getString("description"));
         return park;
     }
+
+
+
+	
 
 }

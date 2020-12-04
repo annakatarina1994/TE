@@ -21,7 +21,19 @@ public class JDBCReservationDAO implements ReservationDAO {
 
     @Override
     public int createReservation(int siteId, String name, LocalDate fromDate, LocalDate toDate) {
-        return -1;
+    	String sqlStatement = "INSERT INTO reservation (reservation_id, site_id, name, from_date, to_date)"
+    			+ " VALUES (?, ?, ?, ?)";
+    	long id = getNextReservationId();
+    	jdbcTemplate.update(sqlStatement, id, siteId, name, fromDate, toDate);
+        return (int) id;
+    }
+    
+    private Long getNextReservationId() {
+    	SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("SELECT (nextval('reservation_reservation_id_seq') AS nextId");
+    	if (nextIdResult.next()) {
+    		return nextIdResult.getLong("nextId"); // 1 is the column from psql
+    	}
+    	throw new RuntimeException("Error getting reservation id");
     }
 
     private Reservation mapRowToReservation(SqlRowSet results) {

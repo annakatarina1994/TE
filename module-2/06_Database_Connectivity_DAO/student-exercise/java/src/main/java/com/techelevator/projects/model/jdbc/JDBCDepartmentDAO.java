@@ -55,7 +55,10 @@ public class JDBCDepartmentDAO implements DepartmentDAO {
 
 	@Override
 	public Department createDepartment(Department newDepartment) {
-		String sqlNewDept = "INSERT INTO department (name) VALUES (?)";
+		String sqlNewDept = "INSERT INTO department (department_id, name) VALUES (?, ?)";
+		
+		Long id = getNextDepartmentId();
+		
 		jdbcTemplate.update(sqlNewDept, newDepartment.getName());
 		return newDepartment;
 	}
@@ -65,7 +68,7 @@ public class JDBCDepartmentDAO implements DepartmentDAO {
 		Department dept = null;
 		
 		String sqlFindDeptById = "SELECT department_id, name FROM department " +
-								" WHERE departmet_id = ?";
+								" WHERE department_id = ?";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindDeptById, id);
 		
@@ -75,11 +78,22 @@ public class JDBCDepartmentDAO implements DepartmentDAO {
 		return dept;
 	}
 	
+	// helper methods
+	
 	private Department mapRowToDepartment(SqlRowSet results) {
 		Department dept = new Department();
 		dept.setId(results.getLong("department_id"));
 		dept.setName(results.getString("name"));
 		return dept;
+	}
+	
+	private Long getNextDepartmentId() {
+		SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("SELECT nextval('seq_department_id')");
+		
+		if(nextIdResult.next()) {
+			return nextIdResult.getLong(1); // 1 because dept_id is in column 1
+		}
+		throw new RuntimeException("Error in getNextDepartmentId");
 	}
 
 }

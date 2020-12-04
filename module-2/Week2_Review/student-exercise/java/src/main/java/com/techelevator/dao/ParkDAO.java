@@ -7,4 +7,8 @@ import java.util.List;
 public interface ParkDAO {
 
     List<Park> getAllParks();
+    
+    Park createNewPark(Park park);
+    
+    void deletePark(int parkId);
 }
