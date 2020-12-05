@@ -20,7 +20,7 @@ public class JDBCDepartmentDAOTest {
 	private static final String TEST_DEPARTMENT = "Testing";
 	private static final Long TEST_ID = (long)99;
 	private static SingleConnectionDataSource dataSource;
-	private JDBCDepartmentDAO dao;
+	private JDBCDepartmentDAO deptDao;
 	
 	@BeforeClass
 	public static void setupDataSource() {
@@ -39,7 +39,7 @@ public class JDBCDepartmentDAOTest {
 	
 	@Before
 	public void setup() {
-		dao = new JDBCDepartmentDAO(dataSource);
+		deptDao = new JDBCDepartmentDAO(dataSource);
 	}
 	
 	@After
@@ -47,34 +47,16 @@ public class JDBCDepartmentDAOTest {
 		dataSource.getConnection().rollback();
 	}
 	
-//	@Test
-//    public void getParksTest_should_return_one_more_after_createPark() {
-//    	List<Park> parks = dao.getAllParks();
-//    	int sizeBeforeAdd = parks.size();
-//    	
-//        Park park = new Park();
-//        park.setName("SQL PARK");
-//        park.setLocation("SQLCITY");
-//        park.setEstablishDate(LocalDate.now());
-//        park.setArea(2000);
-//        park.setVisitors(2000);
-//        park.setDescription("SQL IS GREAT FUN");
-//        dao.createNewPark(park);
-//        List<Park> parksAfterAdd = dao.getAllParks();
-//    	int sizeAfterAdd = parksAfterAdd.size();
-//    	
-//    	assertEquals(sizeBeforeAdd + 1, sizeAfterAdd);
-//    }
 	
 	@Test
 	public void createDepartment_creates_new_department() {
-		List<Department> departments = dao.getAllDepartments();
+		List<Department> departments = deptDao.getAllDepartments();
 		int sizeBeforeCreate = departments.size();
 		
 		Department dept = getDepartment((long) 1, TEST_DEPARTMENT);
-		dao.createDepartment(dept);
+		deptDao.createDepartment(dept);
 		
-		List<Department> deptsAfterCreate = dao.getAllDepartments();
+		List<Department> deptsAfterCreate = deptDao.getAllDepartments();
 		int sizeAfterCreate = deptsAfterCreate.size();
 		
 		assertEquals(sizeBeforeCreate + 1, sizeAfterCreate);
@@ -85,9 +67,9 @@ public class JDBCDepartmentDAOTest {
 	@Test
 	public void searchDeptByName_returns_by_name() {
 		Department dept = getDepartment((long) 1, "Testing");
-		dao.createDepartment(dept);
+		deptDao.createDepartment(dept);
 		
-		List<Department> results = dao.searchDepartmentsByName("Testing");
+		List<Department> results = deptDao.searchDepartmentsByName("Testing");
 		
 		assertNotNull(results);
 		assertEquals(1, results.size());
@@ -101,10 +83,10 @@ public class JDBCDepartmentDAOTest {
 	public void getDepartmentByID_returns_department_according_to_ID() {
 		Department dept = getDepartment(TEST_ID, "Testing");
 		
-		dao.createDepartment(dept);
+		deptDao.createDepartment(dept);
 //		List<Department> departments = dao.getAllDepartments();
 		
-		Department result = dao.getDepartmentById(dept.getId());
+		Department result = deptDao.getDepartmentById(dept.getId());
 		
 		assertNotNull(result);
 		assertDeptsAreEqual(dept, result);
