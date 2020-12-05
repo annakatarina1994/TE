@@ -35,11 +35,17 @@ public class JDBCProjectDAO implements ProjectDAO {
 
 	@Override
 	public void removeEmployeeFromProject(Long projectId, Long employeeId) {
+		String sqlRemoveEmpFromProject = "DELETE FROM project_employee" + 
+				" WHERE employee_id = ? AND project_id = ?";
 		
+		jdbcTemplate.update(sqlRemoveEmpFromProject, projectId, employeeId);
 	}
 
 	@Override
 	public void addEmployeeToProject(Long projectId, Long employeeId) {
+		String sqlAddEmpToProject = "INSERT INTO project_employee (project_id, employee_id) VALUES (?, ?)";
+		
+		jdbcTemplate.update(sqlAddEmpToProject, projectId, employeeId);
 		
 	}
 	

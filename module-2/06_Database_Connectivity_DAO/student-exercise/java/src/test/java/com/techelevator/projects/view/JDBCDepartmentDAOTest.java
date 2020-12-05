@@ -104,9 +104,9 @@ public class JDBCDepartmentDAOTest {
 		dao.createDepartment(dept);
 //		List<Department> departments = dao.getAllDepartments();
 		
-		Department result = dao.getDepartmentById(TEST_ID);
+		Department result = dao.getDepartmentById(dept.getId());
 		
-//		assertNotNull(result);
+		assertNotNull(result);
 		assertDeptsAreEqual(dept, result);
 	}
 	

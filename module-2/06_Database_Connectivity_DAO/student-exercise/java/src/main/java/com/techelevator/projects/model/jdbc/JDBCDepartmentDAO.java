@@ -57,9 +57,9 @@ public class JDBCDepartmentDAO implements DepartmentDAO {
 	public Department createDepartment(Department newDepartment) {
 		String sqlNewDept = "INSERT INTO department (department_id, name) VALUES (?, ?)";
 		
-		Long id = getNextDepartmentId();
+		newDepartment.setId(getNextDepartmentId());
 		
-		jdbcTemplate.update(sqlNewDept, newDepartment.getName());
+		jdbcTemplate.update(sqlNewDept, newDepartment.getId(), newDepartment.getName());
 		return newDepartment;
 	}
 
