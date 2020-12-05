@@ -3,6 +3,8 @@ package com.techelevator.projects.model;
 import java.util.List;
 
 public interface EmployeeDAO {
+	
+	public Employee createEmployee(Employee newEmployee);
 
 	/**
 	 * Gets all employees from the datastore and returns them in a List

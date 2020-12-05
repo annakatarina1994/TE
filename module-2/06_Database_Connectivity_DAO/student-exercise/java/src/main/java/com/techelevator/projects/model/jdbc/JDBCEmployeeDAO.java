@@ -20,6 +20,19 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 	}
 	
 	@Override
+	public Employee createEmployee(Employee newEmployee) {
+
+		String sqlNewEmp = "INSERT INTO employee (employee_id, department_id, first_name, last_name, birth_date, gender, hire_date) " +
+								" VALUES (?, ?, ?, ?, ?, ?, ?)";
+		
+		newEmployee.setId(getNextEmployeeId());
+		
+		jdbcTemplate.update(sqlNewEmp, newEmployee.getId(), newEmployee.getDepartmentId(), newEmployee.getFirstName(), newEmployee.getLastName(),
+				newEmployee.getBirthDay(), newEmployee.getGender(), newEmployee.getHireDate());
+		return newEmployee;
+	}
+	
+	@Override
 	public List<Employee> getAllEmployees() {
 		List<Employee> allEmployees = new ArrayList<>();
 		String sqlGetAllEmployees = "SELECT * FROM employee";
@@ -99,6 +112,8 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 		
 	}
 	
+	// helper methods
+	
 	private Employee mapRowToEmployee(SqlRowSet results) {
 		Employee emp = new Employee();
 		emp.setId(results.getLong("employee_id"));
@@ -109,5 +124,15 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 		emp.setGender(results.getString("gender").charAt(0));
 		return emp;
 	}
+	
+	private Long getNextEmployeeId() {
+		SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("SELECT nextval('seq_employee_id')");
+		
+		if(nextIdResult.next()) {
+			return nextIdResult.getLong(1); 
+		}
+		throw new RuntimeException("Error in getNextEmployeeId");
+	}
+
 
 }

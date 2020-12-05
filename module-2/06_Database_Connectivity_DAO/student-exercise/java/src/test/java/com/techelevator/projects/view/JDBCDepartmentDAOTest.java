@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
 import com.techelevator.projects.model.Department;
+import com.techelevator.projects.model.DepartmentDAO;
 import com.techelevator.projects.model.jdbc.JDBCDepartmentDAO;
 
 public class JDBCDepartmentDAOTest {
@@ -20,7 +21,7 @@ public class JDBCDepartmentDAOTest {
 	private static final String TEST_DEPARTMENT = "Testing";
 	private static final Long TEST_ID = (long)99;
 	private static SingleConnectionDataSource dataSource;
-	private JDBCDepartmentDAO deptDao;
+	private DepartmentDAO deptDao;
 	
 	@BeforeClass
 	public static void setupDataSource() {

@@ -3,6 +3,8 @@ package com.techelevator.projects.model;
 import java.util.List;
 
 public interface ProjectDAO {
+	
+	public Project createProject(Project newProject);
 
 	/**
 	 * Get a list of all active projects. A project is active if we are past

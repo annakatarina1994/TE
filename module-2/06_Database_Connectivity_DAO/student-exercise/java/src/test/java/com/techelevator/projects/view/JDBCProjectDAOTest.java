@@ -13,12 +13,13 @@ import org.junit.Test;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
 import com.techelevator.projects.model.Project;
+import com.techelevator.projects.model.ProjectDAO;
 import com.techelevator.projects.model.jdbc.JDBCProjectDAO;
 
 public class JDBCProjectDAOTest {
 
 	private static SingleConnectionDataSource dataSource;
-	private JDBCProjectDAO projectDao;
+	private ProjectDAO projectDao;
 	
 	@BeforeClass
 	public static void setupDataSource() {

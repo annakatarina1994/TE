@@ -19,6 +19,20 @@ public class JDBCProjectDAO implements ProjectDAO {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
+	
+	@Override
+	public Project createProject(Project newProject) {
+		String sqlNewProject = "INSERT INTO project (project_id, name, from_date, to_date) " +
+								" VALUES (?, ?, ?, ?)";
+		
+		newProject.setId(getNextProjectId());
+		
+		jdbcTemplate.update(sqlNewProject, newProject.getId(), newProject.getName(), newProject.getStartDate(),
+				newProject.getEndDate());
+		return newProject;
+	}
+	
+	
 	@Override
 	public List<Project> getAllActiveProjects() {
 		List<Project> allActiveProjects = new ArrayList<>();
@@ -49,6 +63,8 @@ public class JDBCProjectDAO implements ProjectDAO {
 		
 	}
 	
+	// helper methods
+	
 	private Project mapRowToProject(SqlRowSet results) {
 		Project temp = new Project();
 		Long id = results.getLong("project_id"); // created local variable called id that holds results from db
@@ -61,6 +77,15 @@ public class JDBCProjectDAO implements ProjectDAO {
 			temp.setEndDate(results.getDate("to_date").toLocalDate());
 		}
 		return temp;
+	}
+	
+	private Long getNextProjectId() {
+	SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("SELECT nextval('seq_project_id')");
+		
+		if(nextIdResult.next()) {
+			return nextIdResult.getLong(1); 
+		}
+		throw new RuntimeException("Error in getNextProjectId");
 	}
 
 }
