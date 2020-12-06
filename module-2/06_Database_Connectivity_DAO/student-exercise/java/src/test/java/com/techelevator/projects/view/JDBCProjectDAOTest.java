@@ -63,9 +63,17 @@ public class JDBCProjectDAOTest {
 	}
 	
 	@Test
-	public void addEmployeeToProject_should_add_one_new_employee_to_project() {
+	public void createProject_should_add_new_project() {
+		List<Project> projects = projectDao.getAllProjects();
+		int sizeBeforeCreate = projects.size();
 		
+		Project project = getProject((long)33, "Test Project", LocalDate.of(2020, 1, 1), LocalDate.of(2020, 12, 21));
+		projectDao.createProject(project);
 		
+		List<Project> projectsAfterCreate = projectDao.getAllProjects();
+		int sizeAfterCreate = projectsAfterCreate.size();
+		
+		assertEquals(sizeBeforeCreate + 1, sizeAfterCreate);
 	}
 	
 	// helper methods

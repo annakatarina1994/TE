@@ -122,6 +122,7 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 		emp.setLastName(results.getString("last_name"));
 		emp.setBirthDay(results.getDate("birth_date").toLocalDate());
 		emp.setGender(results.getString("gender").charAt(0));
+		emp.setHireDate(results.getDate("hire_date").toLocalDate());
 		return emp;
 	}
 	

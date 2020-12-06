@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
+import com.techelevator.projects.model.Department;
 import com.techelevator.projects.model.Project;
 import com.techelevator.projects.model.ProjectDAO;
 
@@ -30,6 +31,20 @@ public class JDBCProjectDAO implements ProjectDAO {
 		jdbcTemplate.update(sqlNewProject, newProject.getId(), newProject.getName(), newProject.getStartDate(),
 				newProject.getEndDate());
 		return newProject;
+	}
+	
+
+	@Override
+	public List<Project> getAllProjects() {
+		List<Project> allProjects = new ArrayList<>();
+		String sqlGetAllProjects = "SELECT * FROM project";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllProjects);
+		while(results.next()) {
+			Project project = mapRowToProject(results);
+			allProjects.add(project);
+		}
+		return allProjects;
+	
 	}
 	
 	
@@ -87,5 +102,7 @@ public class JDBCProjectDAO implements ProjectDAO {
 		}
 		throw new RuntimeException("Error in getNextProjectId");
 	}
+
+
 
 }
