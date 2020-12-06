@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "json-server --watch ./locations.json"
+    "start": "json-server --watch ./hotels-reviews.json --routes routes.json"
   },
   "keywords": [],
   "author": "",
