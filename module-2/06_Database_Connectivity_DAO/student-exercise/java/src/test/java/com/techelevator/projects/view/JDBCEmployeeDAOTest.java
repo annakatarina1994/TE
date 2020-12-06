@@ -76,6 +76,22 @@ public class JDBCEmployeeDAOTest {
 		
 	}
 	
+	@Test
+	public void getAllEmployees_should_return_all_employees() {
+		List<Employee> employees = employeeDao.getAllEmployees();
+		int sizeBeforeCreate = employees.size();
+		
+		Employee emp = getEmployee((long)99, (long)9, "Theodore", "Tester", LocalDate.of(1990,5,5), "F", LocalDate.of(2015,5,30));
+		employeeDao.createEmployee(emp);
+		
+		List<Employee> employeesAfterCreate = employeeDao.getAllEmployees();
+		int sizeAfterCreate = employeesAfterCreate.size();
+		
+		assertEquals(sizeBeforeCreate + 1, sizeAfterCreate);
+	}
+	
+	
+	
 	//helper methods
 	
 	private Employee getEmployee(Long employeeId, Long departmentId, String firstName, String lastName, LocalDate birthDate, String gender, LocalDate hireDate) {
