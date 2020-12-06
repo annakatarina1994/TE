@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -46,9 +47,25 @@ public class JDBCProjectDAOTest {
 		dataSource.getConnection().rollback();
 	}
 	
+
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void getAllActiveProjects_only_returns_active_projects() {
+		List<Project> projects = projectDao.getAllActiveProjects();
+		int sizeBeforeCreate = projects.size();
+		
+		Project project = getProject((long)45, "Test Project", LocalDate.of(2020, 1, 1), LocalDate.of(2022, 12, 12));
+		projectDao.createProject(project);
+		
+		List<Project> resultsAfterCreate = projectDao.getAllActiveProjects();
+		int sizeAfterCreate = resultsAfterCreate.size();
+		
+		assertEquals(sizeBeforeCreate + 1, sizeAfterCreate);
+	}
+	
+	@Test
+	public void addEmployeeToProject_should_add_one_new_employee_to_project() {
+		
+		
 	}
 	
 	// helper methods
@@ -65,7 +82,8 @@ public class JDBCProjectDAOTest {
 	private void assertProjectsAreEqual(Project expected, Project actual) {
 		assertEquals(expected.getId(), actual.getId());
 		assertEquals(expected.getName(), actual.getName());
-		assertEquals(expected.getStartDate(), actual.getEndDate());
+		assertEquals(expected.getStartDate(), actual.getStartDate());
 		assertEquals(expected.getEndDate(), actual.getEndDate());
 	}
 }
+ 

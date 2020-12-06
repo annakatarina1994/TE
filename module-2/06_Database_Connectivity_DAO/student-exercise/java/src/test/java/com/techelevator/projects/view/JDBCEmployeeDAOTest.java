@@ -48,17 +48,37 @@ public class JDBCEmployeeDAOTest {
 		dataSource.getConnection().rollback();
 	}
 	
+	@Test
+	public void getEmpsByDeptId_returns_only_employees_in_that_department() {
+		Employee emp = getEmployee((long)99, (long)9, "Harriet", "Tester", LocalDate.of(1990,5,5), "F", LocalDate.of(2015,5,30));
+		employeeDao.createEmployee(emp);
+		
+		List<Employee> results = employeeDao.getEmployeesByDepartmentId((long)9);
+		
+		assertNotNull(results);
+		assertEquals(1, results.size());
+		Employee savedEmp = results.get(0);
+		assertEmpsAreEqual(emp, savedEmp);
+	}
+	
 	
 	@Test
 	public void searchEmployeesByName_should_return_employee_by_name() {
-		Employee emp = getEmployee((long)99, (long)9, "Selma", "Tester", LocalDate.of(1990,5,5), LocalDate.of(2010,7,1), "F");
+		Employee emp = getEmployee((long)99, (long)9, "Selma", "Tester", LocalDate.of(1990,5,5), "F", LocalDate.of(2015,5,30));
+		employeeDao.createEmployee(emp);
 		
+		List<Employee> results = employeeDao.searchEmployeesByName("Selma", "Tester");
+		
+		assertNotNull(results);
+		assertEquals(1, results.size());
+		Employee savedEmp = results.get(0);
+		assertEmpsAreEqual(emp, savedEmp);
 		
 	}
 	
 	//helper methods
 	
-	private Employee getEmployee(Long employeeId, Long departmentId, String firstName, String lastName, LocalDate birthDate, LocalDate hireDate, String gender) {
+	private Employee getEmployee(Long employeeId, Long departmentId, String firstName, String lastName, LocalDate birthDate, String gender, LocalDate hireDate) {
 		Employee emp = new Employee();
 		emp.setId(employeeId);
 		emp.setDepartmentId(departmentId);
