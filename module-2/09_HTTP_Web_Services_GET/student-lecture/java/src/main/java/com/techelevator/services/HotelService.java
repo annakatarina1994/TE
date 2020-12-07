@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 public class HotelService {
 
     private final String API_BASE_URL;
+    private RestTemplate restTemplate = new RestTemplate();
 
 
     public HotelService(String apiURL) {
@@ -15,27 +16,27 @@ public class HotelService {
     }
 
     public Hotel[] listHotels() {
-        return null;
+    	return restTemplate.getForObject(API_BASE_URL + "hotels", Hotel[].class);
     }
 
     public Review[] listReviews() {
-    	  return null;
+    	  return restTemplate.getForObject(API_BASE_URL + "reviews", Review[].class);
     }
 
     public Hotel getHotelById(int id) {
-    	  return null;
+    	  return restTemplate.getForObject(API_BASE_URL + "hotels/" + id, Hotel.class);
     }
 
     public Review[] getReviewsByHotelId(int hotelID) {
-    	  return null;
+    	  return restTemplate.getForObject(API_BASE_URL + "hotels/" + hotelID + "/reviews", Review[].class);
     }
 
     public Hotel[] getHotelsByStarRating(int stars) {
-    	  return null;
+    	  return restTemplate.getForObject(API_BASE_URL + "hotels?stars=" + stars, Hotel[].class);
     }
 
     public City getWithCustomQuery(){
-    	  return null;
+    	  return restTemplate.getForObject("https://api.teleport.org/api/cities/geonameid:3060280/", City.class);
     }
 
 }
