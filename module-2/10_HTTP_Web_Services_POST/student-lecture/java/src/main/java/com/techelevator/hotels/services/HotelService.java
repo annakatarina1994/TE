@@ -28,8 +28,23 @@ public class HotelService {
    * @return Reservation
    */
   public Reservation addReservation(String newReservation) {
-    // TODO: Implement method
-    return null;
+    Reservation reservation = makeReservation(newReservation);
+    
+    // is user sent in invalid string data, return null
+    if(reservation == null) {
+    	return null;
+    }
+   
+    HttpEntity<Reservation> entity = makeEntity(reservation);
+    try {
+    reservation = restTemplate.postForObject(BASE_URL + "hotels/" + reservation.getHotelID() + 
+    		"/reservations", entity, Reservation.class);
+    } catch (RestClientResponseException ex) {
+    	console.printError(ex.getRawStatusCode() + ": " + ex.getStatusText());
+    } catch (ResourceAccessException ex) {
+    	console.printError(ex.getMessage());
+    }
+    return reservation;
   }
 
   /**
@@ -40,8 +55,19 @@ public class HotelService {
    * @return
    */
   public Reservation updateReservation(String CSV) {
-    // TODO: Implement method
-    return null;
+    Reservation reservation = makeReservation(CSV);
+    if(reservation == null) {
+    	return null;
+    }
+    HttpEntity<Reservation> entity = makeEntity(reservation);
+    try {
+    restTemplate.put(BASE_URL + "reservations/" + reservation.getId(), entity);
+    } catch (RestClientResponseException ex) {
+    	console.printError(ex.getRawStatusCode() + ": " + ex.getStatusText());
+    } catch (ResourceAccessException ex) {
+    	console.printError(ex.getMessage());
+    }
+    return reservation;
   }
 
   /**
@@ -50,7 +76,7 @@ public class HotelService {
    * @param id
    */
   public void deleteReservation(int id) {
-    // TODO: Implement method
+    restTemplate.delete(BASE_URL + "reservations/" + id);
   }
 
   /* DON'T MODIFY ANY METHODS BELOW */
@@ -166,6 +192,13 @@ public class HotelService {
 
     return new Reservation(Integer.parseInt(parsed[0].trim()), Integer.parseInt(parsed[1].trim()), parsed[2].trim(),
         parsed[3].trim(), parsed[4].trim(), Integer.parseInt(parsed[5].trim()));
+  }
+  
+  private HttpEntity<Reservation> makeEntity(Reservation reservation) {
+	  HttpHeaders headers = new HttpHeaders();
+	    headers.setContentType(MediaType.APPLICATION_JSON);
+	    HttpEntity<Reservation> entity = new HttpEntity<>(reservation, headers);
+	    return entity;
   }
 
 }

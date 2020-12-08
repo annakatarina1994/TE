@@ -1,6 +1,9 @@
 package com.techelevator.services;
 
 import com.techelevator.models.Auction;
+
+import java.util.Random;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -68,28 +71,79 @@ public class AuctionService {
     }
 
     public Auction add(String auctionString) {
-        // place code here
-        return null;
+        Auction auction = makeAuction(auctionString);
+        
+        if(auction == null) {
+        	return null;
+        }
+        
+        HttpEntity<Auction> entity = makeEntity(auction);
+        try {
+        	auction = restTemplate.postForObject(BASE_URL, entity, Auction.class);
+        } catch (RestClientResponseException ex) {
+        	console.printError(ex.getRawStatusCode() + ": " + ex.getStatusText());
+        	return null;
+        } catch (ResourceAccessException ex) {
+        	console.printError(ex.getMessage());
+        	return null;
+        }
+        return auction;
     }
 
     public Auction update(String auctionString) {
-        // place code here
-        return null;
+        Auction auction = makeAuction(auctionString);
+        if(auction == null) {
+        	return null;
+        }
+        HttpEntity<Auction> entity = makeEntity(auction);
+        
+        try {
+        	restTemplate.put(BASE_URL + "/" + auction.getId(), entity);
+        } catch (RestClientResponseException ex) {
+        	console.printError(ex.getRawStatusCode() + ": " + ex.getStatusText());
+        	return null;
+        } catch (ResourceAccessException ex) {
+        	console.printError(ex.getMessage());
+        	return null;
+        }
+        return auction;
     }
 
     public boolean delete(int id) {
-    	// place code here
-    	return false; 
+    	try {
+    	restTemplate.delete(BASE_URL + "/" + id);
+    	}catch (RestClientResponseException ex) {
+        	console.printError(ex.getRawStatusCode() + ": " + ex.getStatusText());
+        	return false;
+        } catch (ResourceAccessException ex) {
+        	console.printError(ex.getMessage());
+        	return false;
+        }
+    	return true; 
     }
 
     private HttpEntity<Auction> makeEntity(Auction auction) {
-        return null;
+    	HttpHeaders headers = new HttpHeaders();
+    	headers.setContentType(MediaType.APPLICATION_JSON);
+    	HttpEntity<Auction> entity = new HttpEntity<>(auction, headers);
+    	return entity;
     }
 
     private Auction makeAuction(String csv) {
+        String[] parsed = csv.split(",");
         
-        return null;
+        if(parsed.length < 4 || parsed.length > 5) {
+        	return null;
+        }
+        if(parsed.length == 4) {
+        	String[] withId = new String[5];
+        	String[] idArray = new String[] { new Random().nextInt(1000) + ""};
+        	System.arraycopy(idArray, 0, withId, 0, 1);
+        	System.arraycopy(parsed, 0, withId, 1, 4);
+        	parsed = withId;
+        	}
+        return new Auction(Integer.parseInt(parsed[0].trim()), parsed[1].trim(), parsed[2].trim(),
+        		parsed[3].trim(), Double.parseDouble(parsed[4].trim()));
     }
-
 
 }
