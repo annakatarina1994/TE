@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "json-server --id \"Id\" data-generation.js"
+    "start": "json-server data-generation.js --routes routes.json"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "faker": "^4.1.0",
     "json-server": "^0.16.1"
   }
 }
