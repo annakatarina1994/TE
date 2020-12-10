@@ -22,6 +22,7 @@ public class ConsoleService {
     System.out.println("3: Create new Reservation for Hotel");
     System.out.println("4: Update existing Reservation for Hotel");
     System.out.println("5: Delete Reservation");
+    System.out.println("6: Filter Hotels on State and City");
     System.out.println("0: Exit");
     System.out.println("");
     System.out.print("Please choose an option: ");
@@ -34,7 +35,17 @@ public class ConsoleService {
     }
     return menuSelection;
   }
+  
+  public String promptForCityName() {
+	  System.out.print("Enter the city name or press Enter to skip: ");
+	  return scanner.nextLine();
+  }
 
+  public String promptForStateName() {
+	  System.out.println("Enter the state name: ");
+	  return scanner.nextLine();
+  }
+  
   public int promptForHotel(Hotel[] hotels, String action) {
     int menuSelection;
     System.out.println("--------------------------------------------");

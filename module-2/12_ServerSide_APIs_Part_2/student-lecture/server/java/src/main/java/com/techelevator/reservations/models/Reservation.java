@@ -8,10 +8,17 @@ import javax.validation.constraints.NotNull;
 public class Reservation {
 
     private int id;
+    @Min (value = 1, message = "The field 'hotelID' is required.")
+    @Max (value = 8, message = "Hotel ID's are between 1 and 8.")
     private int hotelID;
+    @NotBlank (message = "The field 'fullName' is required.")
     private String fullName;
+    @NotBlank (message = "The field 'checkInDate' is required.")
     private String checkinDate;
+    @NotBlank (message = "The field 'checkoutDate' is required.")
     private String checkoutDate;
+    @Min (value = 1, message = "The minimum number of guests is 1.")
+    @Max (value = 5, message = "The maximum number of guests is 5.")
     private int guests;
 
     public Reservation() {

@@ -84,6 +84,21 @@ public class HotelService {
       console.printError(ex.getMessage());
     }
   }
+  
+  public Hotel[] filteredHotelByCityAndState(String city, String state) {
+	  Hotel[] hotels = null;
+	  try {
+		  hotels = restTemplate.getForObject(BASE_URL + "filter?state=" + state + 
+				  "&city=" + city, Hotel[].class);
+	  } catch (RestClientResponseException ex) {
+	      // handles exceptions thrown by rest template and contains status codes
+	      console.printError(ex.getRawStatusCode() + " : " + ex.getStatusText());
+	    } catch (ResourceAccessException ex) {
+	      // i/o error, ex: the server isn't running
+	      console.printError(ex.getMessage());
+	    }
+	  return hotels;
+  }
 
   /* DON'T MODIFY ANY METHODS BELOW */
 
