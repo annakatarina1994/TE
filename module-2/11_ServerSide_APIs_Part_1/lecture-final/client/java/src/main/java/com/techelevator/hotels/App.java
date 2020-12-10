@@ -68,7 +68,18 @@ public class App {
                     int reservationId = consoleService.promptForReservation(reservations, "Delete Reservation");
                     hotelService.deleteReservation(reservationId);
                 }
-            } else if (menuSelection == 0) { // Exit
+            }  else if (menuSelection == 6) {  // handle the filtering
+            	String city = consoleService.promptForCityName();
+            	if (city.length() == 0) {
+            		city = null;
+            	}
+            	String state = consoleService.promptForState();
+            	Hotel[] hotels = hotelService.filterHotelByCityAndState(city, state);
+            	if (hotels != null) {
+            		consoleService.printHotels(hotels);
+            	}
+            	
+            }  else if (menuSelection == 0) { // Exit
                 consoleService.exit();
             } else {
                 // anything else is not valid
