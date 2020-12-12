@@ -106,8 +106,10 @@ public class Exercises {
 	 no23([3, 5]) → false
 	 */
 	public boolean no23(int[] nums) {
-		
-		return false;
+		if(nums[0] == 2 || nums[0] == 3 || nums[1] == 2 || nums[1] == 3) {
+			return false;
+		}
+		return true;
 	}
 
 	/*
@@ -119,7 +121,9 @@ public class Exercises {
 	 makeLast([3]) → [0, 3]
 	 */
 	public int[] makeLast(int[] nums) {
-		return new int[] {};
+		int[] doubleLast = new int[nums.length * 2];
+		doubleLast[doubleLast.length - 1] = nums[nums.length - 1];
+		return doubleLast;
 	}
 
 	/*
@@ -129,6 +133,7 @@ public class Exercises {
 	 double23([2, 3]) → false
 	 */
 	public boolean double23(int[] nums) {
+	
 		return false;
 	}
 
