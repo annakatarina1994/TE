@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Component
 public class JDBCCatCardDAO implements CatCardDAO {
 
 	private JdbcTemplate jdbcTemplate;
@@ -24,39 +24,58 @@ public class JDBCCatCardDAO implements CatCardDAO {
 
 	@Override
 	public List<CatCard> list() {
-		// TODO Auto-generated method stub
-		return null;
+		List<CatCard> catCards = new ArrayList<>();
+		String sqlListAllCards = "SELECT * FROM catcards";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlListAllCards);
+		
+		while(results.next()) {
+			CatCard catCard = mapRowToCatCard(results);
+			catCards.add(catCard);
+			
+		}
+		return catCards;
 	}
 
 	@Override
 	public CatCard get(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		CatCard catCard = null;
+		String sqlGetCardById = "SELECT * FROM catcards WHERE id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetCardById);
+		
+		if(results.next()) {
+			catCard = mapRowToCatCard(results);
+			
+		} else {
+			throw new CatCardNotFoundException();
+		}
+		return catCard;
 	}
 
 	@Override
-	public boolean save(CatCard cardToSave) {
-		// TODO Auto-generated method stub
-		return false;
+    public boolean update(long cardId, CatCard changedCard) {
+        String sql = "UPDATE catcards SET img_url = ?, fact = ?, caption = ? WHERE id = ? ";
+        return jdbcTemplate.update(sql, changedCard.getImgUrl(), changedCard.getFact(), changedCard.getCaption(), cardId) == 1;
+    }
+    @Override
+    public boolean delete(long id) {
+        String sql = "DELETE FROM catcards WHERE id = ? ";
+        return jdbcTemplate.update(sql, id) == 1;
+    }
+    @Override
+    public boolean save(CatCard card) {
+        String sql = "INSERT INTO catcards (id, img_url, fact, caption) VALUES (DEFAULT, ?, ?, ?)";
+        return jdbcTemplate.update(sql,card.getImgUrl(),card.getFact(),card.getCaption()) == 1;
+    }
+
+	// helper methods
+
+	private CatCard mapRowToCatCard(SqlRowSet results) {
+		CatCard catCard = new CatCard();
+		catCard.setId(results.getLong("id"));
+		catCard.setImgUrl(results.getString("img_url"));
+		catCard.setFact(results.getString("fact"));
+		catCard.setCaption(results.getString("caption"));
+		return catCard;
 	}
-
-	@Override
-	public boolean update(long id, CatCard card) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean delete(long id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-
-
-
-
-
 
 }

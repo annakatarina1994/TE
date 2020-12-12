@@ -9,7 +9,13 @@ public class Exercises {
 	 arrayCount9([1, 9, 9, 3, 9]) → 3
 	 */
 	public int arrayCount9(int[] nums) {
-		return 0;
+		int count = 0;
+		for(int i = 0; i < nums.length; i++) {
+			if(nums[i] == 9) {
+				count++;
+			}
+		}
+		return count;
 	}
 
 	/*
@@ -19,6 +25,19 @@ public class Exercises {
 	 arrayFront9([1, 2, 3, 4, 5]) → false
 	 */
 	public boolean arrayFront9(int[] nums) {
+		int count = 0;
+		int size = 0;
+		if(nums.length > 4) {
+			size = 4;
+		} else {
+			size = nums.length;
+		}
+		for(int i = 0; i < size; i++) {
+			if(nums[i] == 9) {
+				return true;
+			}
+		}
+		
 		return false;
 	}
 
@@ -29,6 +48,11 @@ public class Exercises {
 	 array123([1, 1, 2, 1, 2, 3]) → true
 	 */
 	public boolean array123(int[] nums) {
+		for(int i = 0; i < nums.length - 2; i++) {
+			if((nums[i] == 1) && (nums[i + 1] == 2) && (nums[i + 2] == 3)) {
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -40,7 +64,12 @@ public class Exercises {
 	 noTriples([1, 1, 1, 2, 2, 2, 1]) → false
 	 */
 	public boolean noTriples(int[] nums) {
-		return false;
+		for(int i = 0; i < nums.length - 2; i++) {
+			if((nums[i] == nums[i + 1]) && (nums[i + 1] == nums[i + 2])) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/*
@@ -51,7 +80,10 @@ public class Exercises {
 	 makeEnds([7, 4, 6, 2]) → [7, 2]
 	 */
 	public int[] makeEnds(int[] nums) {
-		return new int[] {};
+		int[] firstLast = new int[2];
+		firstLast[0] = nums[0];
+		firstLast[1] = nums[nums.length - 1];
+		return firstLast;
 	}
 
 	/*
@@ -61,6 +93,9 @@ public class Exercises {
 	 has23([4, 5]) → false
 	 */
 	public boolean has23(int[] nums) {
+		if(nums[0] == 2 || nums[0] == 3 || nums[1] == 2 || nums[1] == 3) {
+			return true;
+		}
 		return false;
 	}
 
@@ -71,6 +106,7 @@ public class Exercises {
 	 no23([3, 5]) → false
 	 */
 	public boolean no23(int[] nums) {
+		
 		return false;
 	}
 
