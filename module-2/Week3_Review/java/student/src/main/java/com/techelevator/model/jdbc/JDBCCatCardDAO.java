@@ -54,7 +54,7 @@ public class JDBCCatCardDAO implements CatCardDAO {
 	@Override
     public boolean update(long cardId, CatCard changedCard) {
         String sql = "UPDATE catcards SET img_url = ?, fact = ?, caption = ? WHERE id = ? ";
-        return jdbcTemplate.update(sql, changedCard.getImgUrl(), changedCard.getFact(), changedCard.getCaption(), cardId) == 1;
+        return jdbcTemplate.update(sql, changedCard.getImgUrl(), changedCard.getCatFact(), changedCard.getCaption(), cardId) == 1;
     }
     @Override
     public boolean delete(long id) {
@@ -64,7 +64,7 @@ public class JDBCCatCardDAO implements CatCardDAO {
     @Override
     public boolean save(CatCard card) {
         String sql = "INSERT INTO catcards (id, img_url, fact, caption) VALUES (DEFAULT, ?, ?, ?)";
-        return jdbcTemplate.update(sql,card.getImgUrl(),card.getFact(),card.getCaption()) == 1;
+        return jdbcTemplate.update(sql,card.getImgUrl(),card.getCatFact(),card.getCaption()) == 1;
     }
 
 	// helper methods
@@ -73,7 +73,7 @@ public class JDBCCatCardDAO implements CatCardDAO {
 		CatCard catCard = new CatCard();
 		catCard.setId(results.getLong("id"));
 		catCard.setImgUrl(results.getString("img_url"));
-		catCard.setFact(results.getString("fact"));
+		catCard.setCatFact(results.getString("fact"));
 		catCard.setCaption(results.getString("caption"));
 		return catCard;
 	}

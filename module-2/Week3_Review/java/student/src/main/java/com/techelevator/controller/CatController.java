@@ -42,7 +42,7 @@ public class CatController {
     	CatCard card = new CatCard();
     	CatFact fact = catFactService.getFact();
     	CatPic pic = catPicService.getPic();
-    	card.setFact(fact.getText()); // set the fact in the catcard by getting text from the model
+    	card.setCatFact(fact.getText()); // set the fact in the catcard by getting text from the model
     	card.setImgUrl(pic.getFile());
     	
     	return card;

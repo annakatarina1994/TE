@@ -13,10 +13,10 @@ public class RestCatFactService implements CatFactService {
 
 	@Override
 	public CatFact getFact() {
-//		CatFact catFact = restTemplate.getForObject(API_URL, CatFact.class);
-		CatFact aCatFact = new CatFact();
-		aCatFact.setText("Cats are so cute!");
-		return aCatFact;
+		CatFact catFact = restTemplate.getForObject(API_URL, CatFact.class);
+//		CatFact aCatFact = new CatFact();
+//		aCatFact.setText("Cats are so cute!");
+		return catFact;
 	}
 
 }

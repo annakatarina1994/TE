@@ -9,7 +9,7 @@ public class CatCard {
 	@NotBlank
 	private String imgUrl;
 	@NotBlank
-	private String fact;
+	private String catFact;
 	@NotBlank
 	private String caption;
 	
@@ -29,12 +29,12 @@ public class CatCard {
 		this.imgUrl = imgUrl;
 	}
 	
-	public String getFact() {
-		return fact;
+	public String getCatFact() {
+		return catFact;
 	}
 	
-	public void setFact(String fact) {
-		this.fact = fact;
+	public void setCatFact(String fact) {
+		this.catFact = fact;
 	}
 	
 	public String getCaption() {
