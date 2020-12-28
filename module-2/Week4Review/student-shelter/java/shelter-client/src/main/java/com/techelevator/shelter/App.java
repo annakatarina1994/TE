@@ -4,9 +4,11 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestClientResponseException;
 
 import com.techelevator.shelter.models.AuthenticatedUser;
+import com.techelevator.shelter.models.Shelter;
 import com.techelevator.shelter.models.UserCredentials;
 import com.techelevator.shelter.services.AuthenticationService;
 import com.techelevator.shelter.services.AuthenticationServiceException;
+import com.techelevator.shelter.services.ShelterService;
 import com.techelevator.view.ConsoleService;
 
 public class App {
@@ -33,22 +35,25 @@ public class App {
 	private AuthenticatedUser currentUser;
 	private ConsoleService console;
 	private AuthenticationService authenticationService;
+	private ShelterService shelterService;
 
 	public static void main(String[] args) {
-		App app = new App(new ConsoleService(System.in, System.out), new AuthenticationService(API_BASE_URL));
+		App app = new App(new ConsoleService(System.in, System.out), new AuthenticationService(API_BASE_URL),
+				new ShelterService(API_BASE_URL));
 		app.run();
 	}
 
-	public App(ConsoleService console, AuthenticationService authenticationService) {
+	public App(ConsoleService console, AuthenticationService authenticationService, ShelterService shelterService) {
 		this.console = console;
 		this.authenticationService = authenticationService;
+		this.shelterService = shelterService;
 
 	}
 
 	public void run() {
-		System.out.println("*********************");
+		System.out.println("****************************************************");
 		System.out.println("* Welcome to the Puppy Shelter and Dog Finder App! *");
-		System.out.println("*********************");
+		System.out.println("****************************************************");
 
 		registerAndLogin();
 		mainMenu();
@@ -60,6 +65,12 @@ public class App {
 			String choice = (String) console.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 			if (MAIN_MENU_OPTION_VIEW_SHELTER.equals(choice)) {
 				System.out.println("view shelters");
+				// call a method in Shelter service that will return all shelters
+				Shelter[] shelters = shelterService.getAllShelters(currentUser.getToken());
+				// print out the shelters
+				for(Shelter shelter : shelters) {
+					System.out.printf("%5d %-20s\n", shelter.getId(), shelter.getName());
+				}
 
 			} else if (MAIN_MENU_OPTION_VIEW_DOGS.equals(choice)) {
 				System.out.println("View all dogs");

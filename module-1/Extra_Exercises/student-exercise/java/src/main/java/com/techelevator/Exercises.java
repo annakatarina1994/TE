@@ -133,7 +133,22 @@ public class Exercises {
 	 double23([2, 3]) → false
 	 */
 	public boolean double23(int[] nums) {
-	
+		int count2 = 0;
+		int count3 = 0;
+		for(int i = 0; i < nums.length; i++) {
+			if(nums[i] == 2) {
+				count2++;
+				if(count2 == 2) {
+					return true;
+				}
+			}
+			else if(nums[i] == 3) {
+				count3++;
+				if(count3 == 2) {
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 
@@ -145,6 +160,8 @@ public class Exercises {
 	 fix23([1, 2, 1]) → [1, 2, 1]
 	 */
 	public int[] fix23(int[] nums) {
+		int[] newNums = new int[3];
+		
 		return new int[] {};
 	}
 
@@ -309,5 +326,28 @@ public class Exercises {
 	public boolean evenlySpaced(int a, int b, int c) {
 		return false;
 	}
-
+	
+//	Given a string, return a version without the first 2 chars. Except keep the first char if it is 'a' and keep
+//	the second char if it is 'b'. The string may be any length. Harder than it looks.
+//			deFront("Hello") -> "llo"
+//			deFront("java") -> "va"
+//			deFront("away") -> "aay"
+	
+	public String deFront(String str) {
+		
+		return null;
+	}
+	
+//	Given two strings, append them together (known as "concatenation") and return the result. However, if the strings are different lengths,
+//			omit chars from the longer string so it is the same length as the shorter string. So "Hello" and "Hi" yield "loHi". The strings may be any length.
+//			minCat("Hello", "Hi") -> "loHi"
+//			minCat("Hello", "java") -> "ellojava"
+//			minCat("java", "Hello") -> "javaello"
+	
+//	Given a string, if one or both of the first 2 chars is 'x', return the string without those 'x' chars, and otherwise return the string unchanged. This is a little harder than it looks.
+//			withoutX2("xHi") -> "Hi"
+//			withoutX2("Hxi") -> "Hi"
+//			withoutX2("Hexllo") -> "Hello"
+//			withoutX2("Hi") -> "Hi"
+	
 }
