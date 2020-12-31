@@ -13,6 +13,9 @@ public class Module1CodingAssessment {
 		List cars = new ArrayList<>();
 		
 		try(Scanner fileScanner = new Scanner(carFile)){
+			
+			int totalAge = 0;
+			
 			while(fileScanner.hasNextLine()) {
 				String line = fileScanner.nextLine();
 				String[] carArray = line.split(",");
@@ -24,11 +27,13 @@ public class Module1CodingAssessment {
 				Car car = new Car(year, make, isClassicCar);
 				cars.add(car);
 				
+				
 				int age = car.getAge(2020);
 				System.out.println(age);
+				totalAge = totalAge + age;
 			}
 			System.out.println(cars.toString());
-			
+			System.out.println(totalAge);
 		}
 		
 		
