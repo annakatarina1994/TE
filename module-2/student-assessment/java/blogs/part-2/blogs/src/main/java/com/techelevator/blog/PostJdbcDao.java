@@ -20,7 +20,10 @@ public class PostJdbcDao implements PostDao {
 		String sql = "INSERT INTO posts (id, name, body, published, created) "
 				+ "VALUES (?, ?, ?, ?, ?)";
 		
-		jdbcTemplate.update(sql);
+		newPost.setId(getNextPostId());
+		
+		jdbcTemplate.update(sql, newPost.getId(), newPost.getName(), newPost.getBody(), 
+				newPost.isPublished(), newPost.getCreated());
 	}
 
 	@Override
@@ -43,6 +46,15 @@ public class PostJdbcDao implements PostDao {
 		postRow.setPublished(results.getBoolean("published"));
 		postRow.setCreated(results.getDate("created").toLocalDate());
 		return postRow;
+	}
+	
+	private Long getNextPostId() {
+		SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("SELECT nextval('posts_id_seq')");
+		
+		if(nextIdResult.next()) {
+			return nextIdResult.getLong(1);
+		}
+		throw new RuntimeException("Error in getNextPostId");
 	}
 
 }
