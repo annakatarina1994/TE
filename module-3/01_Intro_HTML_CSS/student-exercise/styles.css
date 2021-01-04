@@ -1,0 +1,74 @@
+body {
+    background-image: url("/img/lotr-background.jpg");
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-family: sans-serif;
+}
+
+header {
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 4em;
+    margin: 20px;
+}
+
+.subtitle {
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img {
+    width: 45%;
+}
+
+i {
+    font-size: 2em;
+}
+
+figure {
+    width: 45%;
+}
+
+blockquote {
+    margin: 2px;
+}
+
+figcaption {
+    margin-left: 4em;
+}
+
+.factsTable {
+    border-spacing: 25px 10px;
+    border-color: white;
+   border-width: 1px;
+    border-style: solid;
+    text-align: center;
+}
+
+th, td {
+    width: 200px;
+}
+
+th{
+    font-family: 2.5em;
+}
+
+#footnote {
+    font-size: .8em;
+}
