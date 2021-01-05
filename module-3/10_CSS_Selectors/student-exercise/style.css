@@ -42,3 +42,23 @@ main {
   margin-left: 200px;
 }
 
+aside > nav > ul > li {
+  list-style: none;
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--blueBorder);
+  margin: 10px auto;
+  padding-bottom: 10px;
+  width: 80%;
+  line-height: 2;
+}
+
+aside > nav > ul > li > a {
+  font-weight: bold;
+  color: var(--blue);
+  text-decoration: none;
+}
+
+aside > nav > ul > li > a:hover {
+  text-decoration: underline;
+}
