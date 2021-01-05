@@ -40,6 +40,8 @@ aside > img {
 
 main {
   margin-left: 200px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 aside > nav > ul > li {
@@ -62,3 +64,17 @@ aside > nav > ul > li > a {
 aside > nav > ul > li > a:hover {
   text-decoration: underline;
 }
+
+header {
+  height: 120px;
+}
+
+header > img {
+  height: 80%;
+}
+
+.banner {
+  display: block;
+  width: 100%;
+}
+
