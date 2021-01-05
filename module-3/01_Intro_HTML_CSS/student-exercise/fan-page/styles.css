@@ -24,7 +24,10 @@ h1 {
 }
 
 h2 {
+    margin: 8px;
+    padding: 10px;
     text-decoration: underline;
+    font-size: 2em;
 }
 
 section {
@@ -34,11 +37,14 @@ section {
 }
 
 img {
+    /* margin: 10px; */
+    padding: 25px;
     width: 45%;
 }
 
 i {
     font-size: 2em;
+    color: rgb(238, 180, 55);
 }
 
 figure {
@@ -66,9 +72,44 @@ th, td {
 }
 
 th{
-    font-family: 2.5em;
+    font-size: 1.2em;
+    text-decoration: underline;
 }
 
 #footnote {
     font-size: .8em;
+}
+
+button {
+    margin: 5px;
+    background-color: rgb(238, 180, 55);
+    height: 40px;
+    border-radius: 7px;
+    border-style: outset;
+    cursor: pointer;
+}
+
+a {
+    color:black;
+    font-weight: bolder;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+button:hover {
+    background-color: rgb(236, 203, 130)
+}
+a:hover {
+    color:black;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+div {
+    display: grid;
+    grid-column: 3;
+    padding: 10px;
 }
