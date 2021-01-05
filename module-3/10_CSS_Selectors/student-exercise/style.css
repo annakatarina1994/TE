@@ -78,3 +78,25 @@ header > img {
   width: 100%;
 }
 
+section > div {
+  display: inline-block;
+  width: 33%;
+  padding-right: 20px;
+  margin-top: 20px;
+}
+
+section > div > h2 {
+  color: var(--green);
+}
+
+section > div > h2 > i {
+  margin-right: 10px;
+}
+
+section > div:not(#contact-us) {
+  border-right: 1px solid var(--greenBorder);
+}
+
+section > div:not(#what-we-do) {
+  padding-left: 20px;
+}
