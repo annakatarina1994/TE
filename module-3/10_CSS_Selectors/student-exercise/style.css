@@ -1,3 +1,10 @@
+:root {
+  --blue: #00ADEE;
+  --blueBorder: rgba(0, 173, 238, 0.4);
+  --green:  #8CC36F;
+  --greenBorder:  rgba(170, 239, 135, 0.8);
+}
+
 * {
   box-sizing: border-box;
   font-family: Tahoma, Verdana, Segoe, sans-serif;
@@ -15,3 +22,23 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+aside {
+  position: fixed;
+  width: 200px;
+  height: 100vh;
+  border-right: 1px solid var(--blueBorder);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+aside > img {
+  display: block;
+  height: 120px;
+  margin: 0 auto;
+}
+
+main {
+  margin-left: 200px;
+}
+

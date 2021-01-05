@@ -89,6 +89,16 @@ button {
     cursor: pointer;
 }
 
+.submitButton {
+    background-color: rgb(238, 180, 55);
+    height: 40px;
+    border-radius: 7px;
+    border-style: outset;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 1em;
+}
+
 a {
     color:black;
     font-weight: bolder;
