@@ -9,7 +9,8 @@ body {
   background-color: #F0F0F0;
   height: 500px;
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
 }
 
 .box {
