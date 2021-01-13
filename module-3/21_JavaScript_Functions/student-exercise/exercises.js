@@ -169,5 +169,31 @@ function useParameterToFilterArray(filterFunction){
  * Read the tests to verify you have the correct behavior.
  */
 
-function getSumOfSubArrayValues(arrayOfArrays){
+function getSumOfSubArrayValues(arrayOfArrays = []){
+    // return arrayOfArrays.reduce(
+    //     (grandTotal, element) => {
+    //         const sum = element.reduce(
+    //             (subTotal, n) => {
+    //                 return subTotal + n;
+    //             }, 0);
+    //         return grandTotal + sum;
+    //     }, 0);
+
+    // if(arrayOfArrays.length > 0) {
+    //     let newArray = arrayOfArrays.flat();
+    //     return newArray.reduce(
+    //         (a, b) => {
+    //             a + b;
+    //         }
+    //     )
+    // }
+    // return 0;
+
+        let grandTotal = 0;
+        for(let i = 0; i < arrayOfArrays.length; i++){
+            for(let ii = 0; ii < arrayOfArrays[i].length; ii++){
+                grandTotal += arrayOfArrays[i][ii];
+            }
+        }
+        return grandTotal;
     }
