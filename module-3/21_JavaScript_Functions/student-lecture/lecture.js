@@ -28,6 +28,10 @@ function printToConsole(value) {
  * @param {number} secondParameter the second parameter to multiply
  */
 
+ function multiplyTogether(firstParameter, secondParameter){
+   return firstParameter * secondParameter;
+ }
+
 /**
  * This version makes sure that no parameters are ever missing. If
  * someone calls this function without parameters, we default the
@@ -39,7 +43,9 @@ function printToConsole(value) {
  * @param {number} [secondParameter=0] the second parameter to multiply
  */
 
-
+function multiplyNoUndefined(firstParameter = 0, secondParameter = 0){
+  return firstParameter * secondParameter;
+}
  
 /**
  * Functions can return earlier before the end of the function. This could be useful
@@ -92,6 +98,16 @@ function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') 
   return description + listOfQuirks.join(separator);
 }
 
+function biggestNumber(){
+  let largest = arguments[0];
+  for(let i = 1; i < arguments.length; i++){
+    if(largest < arguments[i]){ // if new number is bigger than value in largest, replace it
+      largest = arguments[i];
+    }
+  }
+  return largest;
+}
+
 /**
  * Takes an array and, using the power of anonymous functions, generates
  * their sum.
@@ -100,7 +116,20 @@ function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') 
  * @returns {number} sum of all the numbers
  */
 function sumAllNumbers(numbersToSum) {
-  return numbersToSum.reduce();
+  return numbersToSum.reduce((sum, number) => {
+    return sum + number;
+     // add each number to the previous sum
+     // sum is initialized at the far left value in your array
+  });
+}
+
+function averageAllNumbers(numbersToAvg){
+  let sum = numbersToAvg.reduce(
+    (sum, number) => {
+      return sum + number;
+    }
+  );
+  return sum / numbersToAvg.length;
 }
 
 /**
@@ -111,4 +140,22 @@ function sumAllNumbers(numbersToSum) {
  * @returns {number[]} a new array with only those numbers that are
  *   multiples of 3
  */
-function allDivisibleByThree(numbersToFilter) {}
+function allDivisibleByThree(numbersToFilter) {
+  return numbersToFilter.filter(
+    (number) => {
+      return number % 3 === 0;
+    }
+  );
+}
+
+/**
+ * Takes an array and returns a new array of all values cubed
+ * @param {number[]} numbersToCube 
+ * @returns {number[]} a new array of all values cubed
+ */
+
+function cubeAllValues(numbersToCube){
+  return numbersToCube.map((number) => {
+    return number * number * number;
+  });
+}
