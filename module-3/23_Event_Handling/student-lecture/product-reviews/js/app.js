@@ -17,14 +17,14 @@ let reviews = [
  */
 function setPageTitle() {
   const pageTitle = document.getElementById('page-title');
-  pageTitle.querySelector('.name').innerHTML = name;
+  pageTitle.querySelector('.name').innerText = name;
 }
 
 /**
  * Add our product description to the page.
  */
 function setPageDescription() {
-  document.querySelector('.description').innerHTML = description;
+  document.querySelector('.description').innerText = description;
 }
 
 /**
@@ -47,9 +47,9 @@ function displayReviews() {
 function displayReview(review) {
   const main = document.getElementById('main');
   const tmpl = document.getElementById('review-template').content.cloneNode(true);
-  tmpl.querySelector('h4').innerHTML = review.reviewer;
-  tmpl.querySelector('h3').innerHTML = review.title;
-  tmpl.querySelector('p').innerHTML = review.review;
+  tmpl.querySelector('h4').innerText = review.reviewer;
+  tmpl.querySelector('h3').innerText = review.title;
+  tmpl.querySelector('p').innerText = review.review;
   // there will always be 1 star because it is a part of the template
   for (let i = 1; i < review.rating; ++i) {
     const img = tmpl.querySelector('img').cloneNode();
@@ -60,12 +60,48 @@ function displayReview(review) {
 
 // LECTURE STARTS HERE ---------------------------------------------------------------
 
-// set the product reviews page title
-setPageTitle();
-// set the product reviews page description
-setPageDescription();
-// display all of the product reviews on our page
-displayReviews();
+document.addEventListener('DOMContentLoaded', () => {
+  // set the product reviews page title
+  setPageTitle();
+  // set the product reviews page description
+  setPageDescription();
+  // display all of the product reviews on our page
+  displayReviews();
+
+  // not currently working
+  const desc = document.querySelector('.description');
+  desc.addEventListener('click', (event) => {
+    toggleDescriptionEdit(event.target);
+  });
+
+  // when user modifies the description and hits enter, save;
+  // they can hit escape to leave without saving
+  const inputDesc = document.getElementById('inputDesc');
+  inputDesc.addEventListener('keyup', (event) => {
+    if(event.key === 'Enter'){
+      exitDescriptionEdit(event.target, true);
+    }
+    if(event.key === 'Escape'){
+      exitDescriptionEdit(event.target, false);
+    }
+  })
+
+  inputDesc.addEventListener('mouseleave', (event) => {
+    exitDescriptionEdit(event.target, false);
+  })
+
+  const btnToggleForm = document.getElementById('btnToggleForm');
+  btnToggleForm.addEventListener('click', () => {
+    showHideForm();
+  })
+
+  const btnSaveReview = document.getElementById('btnSaveReview');
+  btnSaveReview.addEventListener('click', (event) => {
+    event.preventDefault(); //stop page from refreshing after submitting review
+    saveReview();
+  })
+});
+
 
 /**
  * Take an event on the description and swap out the description for a text box.
@@ -130,4 +166,21 @@ function resetFormValues() {
 /**
  * I will save the review that was added using the add review from
  */
-function saveReview() {}
+function saveReview() { 
+  const name = document.getElementById('name');
+  const title = document.getElementById('title');
+  const rating = document.getElementById('rating');
+  const review = document.getElementById('review');
+
+  const newReview = {
+    reviewer: name.value,
+    title: title.value,
+    rating: rating.value,
+    review: review.value
+  };
+
+  reviews.push(newReview);
+  displayReview(newReview);
+  showHideForm();
+  
+}
