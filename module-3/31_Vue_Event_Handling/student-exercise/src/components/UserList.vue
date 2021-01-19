@@ -52,7 +52,7 @@
           <td>{{ user.emailAddress }}</td>
           <td>{{ user.status }}</td>
           <td>
-            <button class="btnEnableDisable">Enable or Disable</button>
+            <button class="btnEnableDisable" >Enable or Disable</button>
           </td>
         </tr>
       </tbody>
@@ -64,24 +64,24 @@
       <button>Delete Users</button>
     </div>
 
-    <button>Add New User</button>
+    <button v-on:click.prevent="showForm = true">Add New User</button>
 
-    <form id="frmAddNewUser">
+    <form v-on:submit.prevent="saveUser" id="frmAddNewUser" v-if="showForm === true">
       <div class="field">
         <label for="firstName">First Name:</label>
-        <input type="text" name="firstName" />
+        <input type="text" name="firstName" v-model="newUser.firstName"/>
       </div>
       <div class="field">
         <label for="lastName">Last Name:</label>
-        <input type="text" name="lastName" />
+        <input type="text" name="lastName" v-model="newUser.lastName"/>
       </div>
       <div class="field">
         <label for="username">Username:</label>
-        <input type="text" name="username" />
+        <input type="text" name="username" v-model="newUser.username"/>
       </div>
       <div class="field">
         <label for="emailAddress">Email Address:</label>
-        <input type="text" name="emailAddress" />
+        <input type="text" name="emailAddress" v-model="newUser.emailAddress"/>
       </div>
       <button type="submit" class="btn save">Save User</button>
     </form>
@@ -93,6 +93,7 @@ export default {
   name: "user-list",
   data() {
     return {
+      showForm: false,
       filter: {
         firstName: "",
         lastName: "",
@@ -160,8 +161,29 @@ export default {
       ]
     };
   },
-  methods: {},
+  methods: {
+    saveUser(){
+      this.users.unshift(this.newUser);
+      this.clearForm();
+    },
+
+    clearForm(){
+      this.newUser = {};
+      this.showForm = false;
+    },
+
+  },
   computed: {
+    flipStatus(){
+      let status = this.users.user.status;
+      if(status === 'Active'){
+        return document.querySelector(".btnEnableDisable").innerText = 'Disable';
+      } else if (status === 'Disabled'){
+        return document.querySelector(".btnEnableDisable").innerText = 'Enable';
+      }
+      return null;
+    },
+
     filteredList() {
       let filteredUsers = this.users;
       if (this.filter.firstName != "") {
