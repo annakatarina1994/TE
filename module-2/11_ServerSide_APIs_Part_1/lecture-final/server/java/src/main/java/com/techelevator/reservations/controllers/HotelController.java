@@ -3,6 +3,7 @@ package com.techelevator.reservations.controllers;
 import java.util.List;
 import java.util.*;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import com.techelevator.reservations.dao.ReservationDAO;
 import com.techelevator.reservations.models.Hotel;
 import com.techelevator.reservations.models.Reservation;
 
+@CrossOrigin
 @RestController
 public class HotelController {
 

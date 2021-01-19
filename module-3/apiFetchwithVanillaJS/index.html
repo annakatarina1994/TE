@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Demo</title>
+</head>
+
+<body>
+    <h2>JavaScript Event Listener</h2>
+    <p>Input currency to convert to from USD: </p>
+    <input id="currency" type="text" />
+    <div id="div1">
+        <button id="myBtn">Try It!</button>
+    </div>
+    <p id="demo"></p>
+
+    <script>
+        document.getElementById("myBtn").addEventListener("click", (event) => {
+            event.stopPropagation();
+            displayDate();
+            displayCurrency(); // call the function and call the API
+
+            // display a random doggo picture
+            displayDoggo();
+
+            displayHotels();
+        });
+        document.getElementById("div1").addEventListener("click", () => {
+            alertDisplay();
+        });
+
+        function displayCurrency(){
+            const currency = document.getElementById('currency').value;
+            fetch("https://api.exchangeratesapi.io/latest?base=USD&symbols=" + currency.toUpperCase())
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                let rate = data.rates;
+                let currencyRate = rate[currency.toUpperCase()];
+                console.log(currencyRate);
+            })
+        }
+
+        function displayDoggo() {
+            fetch("https://dog.ceo/api/breeds/image/random")
+            .then((response) =>  response.json())
+            .then((data) => {
+                console.log(data.message);
+                const img = document.createElement('img');
+                img.src = data.message;
+                const paragraph = document.getElementById('demo')
+                paragraph.insertAdjacentElement('afterend', img);
+            })
+        }
+
+        function displayHotels() {
+            fetch("http://localhost:8080/hotels")
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            })
+        }
+
+        function displayDate() {
+            document.getElementById("demo").innerText = Date();
+        }
+
+        function alertDisplay(){
+            window.alert("BooYA!!");
+        }
+    </script>
+</body>
+
+</html>

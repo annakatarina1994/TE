@@ -24,6 +24,13 @@
         </td>
       </tr>
       <!-- user listing goes here -->
+      <tr v-for="(user, index) in filteredList" v-bind:key="index">
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.emailAddress }}</td>
+        <td>{{ user.status }}</td>
+      </tr>
     </tbody>
   </table>
 </template>
@@ -40,7 +47,21 @@ export default {
         { firstName: 'Ben', lastName: 'Carter', username: 'bcarter', emailAddress: 'bcarter@gmail.com', status: 'Active' },
         { firstName: 'Katie', lastName: 'Jackson', username: 'kjackson', emailAddress: 'kjackson@yahoo.com', status: 'Active' },
         { firstName: 'Mark', lastName: 'Smith', username: 'msmith', emailAddress: 'msmith@foo.com', status: 'Disabled' }
-      ]
+      ],
+      filter: {
+        firstName: '',
+        lastName: '',
+        username: '',
+        emailAddress: '',
+        status: ''
+      }
+    }
+  },
+  computed: {
+    filteredList(){
+      return this.users.filter((user) => {
+        return user.firstName.includes(this.filter);
+      })
     }
   }
 }
