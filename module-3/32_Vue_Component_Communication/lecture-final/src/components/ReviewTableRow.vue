@@ -1,0 +1,40 @@
+<template>
+  <tr>
+    <td>{{ review.title }}</td>
+    <td>{{ review.reviewer }}</td>
+    <td>{{ review.review }}</td>
+    <td class="stars">
+        <img
+        src="../assets/star.png"
+        v-bind:title="review.rating + ' Star Review'"
+        class="ratingStar"
+        v-for="n in review.rating"
+        v-bind:key="n"
+        width="20px"  />
+    </td>
+    <td>
+        <input  type="checkbox"
+        v-bind:checked="review.favorited"
+        v-on:change="onFavoritedChange"
+      /> 
+    </td>
+  </tr>
+</template>
+
+<script>
+export default {
+  name: "review-table-row",
+  props: ["review"],
+  methods: {
+    onFavoritedChange() {
+      this.$store.commit("FLIP_FAVORITED", this.review);
+    },
+  },
+};
+</script>
+
+<style>
+.ratingStar{
+    display:flex;
+}
+</style>
