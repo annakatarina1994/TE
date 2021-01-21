@@ -44,7 +44,7 @@
           v-bind:class="{ disabled: user.status === 'Disabled' }"
         >
           <td>
-            <input type="checkbox" v-bind:id="user.id" v-bind:value="user.id" />
+            <input type="checkbox" v-bind:id="user.id" v-bind:value="user.id" v-model="selectedUserIDs"/>
           </td>
           <td>{{ user.firstName }}</td>
           <td>{{ user.lastName }}</td>
@@ -52,21 +52,21 @@
           <td>{{ user.emailAddress }}</td>
           <td>{{ user.status }}</td>
           <td>
-            <button class="btnEnableDisable" >Enable or Disable</button>
+            <button class="btnEnableDisable" v-on:click="flipStatus(user.id)">{{user.status === 'Active' ? 'Disable' : 'Enable'}}</button>
           </td>
         </tr>
       </tbody>
     </table>
 
     <div class="all-actions">
-      <button>Enable Users</button>
-      <button>Disable Users</button>
-      <button>Delete Users</button>
+      <button v-bind:disabled="actionButtonDisabled">Enable Users</button>
+      <button v-bind:disabled="actionButtonDisabled">Disable Users</button>
+      <button v-bind:disabled="actionButtonDisabled">Delete Users</button>
     </div>
 
     <button v-on:click.prevent="showForm = true">Add New User</button>
 
-    <form v-on:submit.prevent="saveUser" id="frmAddNewUser" v-if="showForm === true">
+    <form v-on:submit.prevent="saveUser" id="frmAddNewUser" v-show="showForm === true">
       <div class="field">
         <label for="firstName">First Name:</label>
         <input type="text" name="firstName" v-model="newUser.firstName"/>
@@ -109,6 +109,7 @@ export default {
         emailAddress: "",
         status: "Active"
       },
+      selectedUserIDs: [],
       users: [
         {
           id: 1,
@@ -172,19 +173,29 @@ export default {
       this.showForm = false;
     },
 
+  flipStatus(id){
+      this.users.filter((user) =>{
+        if(user.id === id && user.status === 'Disabled'){
+          user.status = 'Active';
+        } else if(user.id === id && user.status === 'Active'){
+          user.status = 'Disabled';
+        }
+      })
+    },
+  enableSelectedUsers(){
+    this.selectedUserIDs.forEach((selectedUser) => {
+      selectedUser.status = 'Active';
+    })
+  }
   },
   computed: {
-    flipStatus(){
-      let status = this.users.user.status;
-      if(status === 'Active'){
-        return document.querySelector(".btnEnableDisable").innerText = 'Disable';
-      } else if (status === 'Disabled'){
-        return document.querySelector(".btnEnableDisable").innerText = 'Enable';
-      }
-      return null;
+    actionButtonDisabled(){
+      if(this.selectedUserIDs.length > 0){
+        return false;
+        }
+       return true;
     },
-
-    filteredList() {
+     filteredList() {
       let filteredUsers = this.users;
       if (this.filter.firstName != "") {
         filteredUsers = filteredUsers.filter((user) =>

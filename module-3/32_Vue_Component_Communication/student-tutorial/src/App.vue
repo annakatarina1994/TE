@@ -1,20 +1,27 @@
 <template>
   <div id="app">
     <todo-list />
+    <new-todo />
+    <todo-summary />
   </div>
 </template>
 
 <script>
-import TodoList from './components/TodoList.vue'
+import TodoList from './components/TodoList.vue';
+import NewTodo from './components/NewTodo.vue';
+import TodoSummary from './components/TodoSummary.vue';
 
 export default {
   name: 'app',
   components: {
-    TodoList
+    TodoList,
+    NewTodo,
+    TodoSummary
   }
 }
 </script>
-
+,
+    TodoSummary
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

@@ -1,17 +1,18 @@
 <template>
   <div id="app" class="main">
-    <h1>Product Reviews for </h1>
-    <p class="description"></p>
+    <h1>Product Reviews for {{$store.state.name}}</h1>
+    <p class="description">{{$store.state.description}}</p>
     <div class="well-display">
-      <average-summary />
-      <star-summary />
-      <star-summary />
-      <star-summary />
-      <star-summary />
-      <star-summary />
+      <average-summary/>
+      <star-summary rating='1'/>
+      <star-summary rating='2'/>
+      <star-summary rating='3'/>
+      <star-summary rating='4'/>
+      <star-summary rating='5'/>
     </div>
     <add-review />
-    <review-list />
+    <review-table />
+    <!-- <review-list /> -->
   </div>
 </template>
 
@@ -19,7 +20,8 @@
 import AverageSummary from "./components/AverageSummary.vue";
 import StarSummary from "./components/StarSummary.vue";
 import AddReview from "./components/AddReview.vue";
-import ReviewList from "./components/ReviewList.vue";
+import ReviewTable from './components/ReviewTable.vue';
+// import ReviewList from "./components/ReviewList.vue";
 
 export default {
   name: "app",
@@ -27,7 +29,8 @@ export default {
     AverageSummary,
     StarSummary,
     AddReview,
-    ReviewList
+    // ReviewList,
+    ReviewTable
   }
 };
 </script>
