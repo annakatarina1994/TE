@@ -59,9 +59,9 @@
     </table>
 
     <div class="all-actions">
-      <button v-bind:disabled="actionButtonDisabled">Enable Users</button>
-      <button v-bind:disabled="actionButtonDisabled">Disable Users</button>
-      <button v-bind:disabled="actionButtonDisabled">Delete Users</button>
+      <button v-bind:disabled="actionButtonDisabled" v-on:click="enableSelectedUsers">Enable Users</button>
+      <button v-bind:disabled="actionButtonDisabled" v-on:click="disableSelectedUsers">Disable Users</button>
+      <button v-bind:disabled="actionButtonDisabled" v-on:click="deleteSelectedUsers">Delete Users</button>
     </div>
 
     <button v-on:click.prevent="showForm = true">Add New User</button>
@@ -182,11 +182,40 @@ export default {
         }
       })
     },
+
   enableSelectedUsers(){
-    this.selectedUserIDs.forEach((selectedUser) => {
-      selectedUser.status = 'Active';
+    this.selectedUserIDs.forEach((id) => {
+      this.users.forEach((user) => {
+        if(user.id === id){
+          user.status = 'Active'
+        }
+      })
     })
+    this.selectedUserIDs = [];
+  },
+
+  disableSelectedUsers(){
+    this.selectedUserIDs.forEach((id) => {
+      this.users.forEach((user) => {
+        if(user.id === id){
+          user.status = 'Disabled'
+        }
+      })
+    })
+    this.selectedUserIDs = []
+  },
+
+  deleteSelectedUsers(){
+    this.selectedUserIDs.forEach((id) => {
+      for(let i = 0; i < this.users.length; i++){
+        if(this.users[i].id === id){
+          this.users.splice(i, 1);
+        }
+      }
+    })
+    this.selectedUserIDs = []
   }
+
   },
   computed: {
     actionButtonDisabled(){
