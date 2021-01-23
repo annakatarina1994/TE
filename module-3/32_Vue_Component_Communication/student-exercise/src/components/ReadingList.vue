@@ -3,6 +3,7 @@
     <book-card 
       v-for="book in $store.state.books"
       v-bind:key="book.title"
+      v-bind:book="book"
     />
   </div>
 </template>
@@ -14,6 +15,11 @@ export default {
     name: 'reading-list',
     components: {
       BookCard
+    },
+    data(){
+      return {
+        
+      }
     }
 }
 </script>
