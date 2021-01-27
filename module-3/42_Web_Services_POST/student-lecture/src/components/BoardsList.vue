@@ -59,7 +59,21 @@ export default {
       });
     },
     saveNewBoard() {
-
+      this.isLoading = true;
+      boardsService.addBoard(this.newBoard).then(response => {
+        if(response.status === 201){
+          this.retrieveBoards();
+        }
+      }).catch(error => {
+        if(error.response){
+          this.errorMsg = "Error submitting new board. Response received: " + error.response.statusText
+        } else if(error.request){
+          this.errorMsg = 'Error submitting new board. Server could not be reached.';
+        } else {
+          this.errorMsg = 'Error submitting new board. Request could not be created.';
+        }
+        this.isLoading = false;
+      });
     },
     randomBackgroundColor() {
       return "#" + this.generateHexCode();

@@ -67,7 +67,31 @@ export default {
         });
     },
     deleteBoard() {
-      
+      if(
+        confirm("Are you sure you want to delete this board and all associated cards? This action " + 
+        "cannot be undone")
+        ){
+          boardsService.deleteBoard(this.boardId).then(response => {
+            if(response.status === 200){
+              alert("Board successfully deleted.");
+              this.$store.commit('DELETE_BOARD', this.boardId);
+              this.$router.push("/");
+            }
+          }).catch(error => {
+             if (error.response) {
+              this.errorMsg =
+                "Error deleting card. Response received was '" +
+                error.response.statusText +
+                "'.";
+            } else if (error.request) {
+              this.errorMsg =
+                "Error deleting card. Server could not be reached.";
+            } else {
+              this.errorMsg =
+                "Error deleting card. Request could not be created.";
+            }
+          });
+        }
     }
   },
   created() {
