@@ -24,7 +24,11 @@ export default {
   methods: {
     updateTopic() {
       const topic = { id: this.topicID, title: this.title };
-      // call topic service update method
+      topicService.updateTopic(topic.id, topic).then(response => {
+        if(response.status === 200){
+          this.$router.push("/");
+        }
+      })
     }
   },
   created() {
@@ -34,11 +38,6 @@ export default {
         this.$store.commit("SET_ACTIVE_TOPIC", response.data);
         this.title = response.data.title;
       })
-      .catch(error => {
-        if (error.response.status == 404) {
-          this.$router.push("/not-found");
-        }
-      });
   }
 };
 </script>
