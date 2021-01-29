@@ -13,15 +13,20 @@ export default {
     return http.get(`/puppy/${id}`);
   },
 
+  // add a puppy to endpoint /newPuppy
+
+  // update a puppy to endpoint /editPuppy
+
+  // delete a puppy to endpoint /removePuppy/id
   create(puppy) {
-    return http.post('/newPuppy', puppy);
+
   },
 
   update(puppy) {
-    return http.put('/editPuppy', puppy);
+  
   },
 
   delete(id) {
-    return http.delete(`/removePuppy/${id}`);
+ 
   }
 }
