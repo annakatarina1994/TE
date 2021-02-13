@@ -14,19 +14,17 @@ export default {
   },
 
   // add a puppy to endpoint /newPuppy
+  create(puppy) {
+    return http.post('/newPuppy', puppy);
+  },
 
   // update a puppy to endpoint /editPuppy
+  update(puppy) {
+    return http.put('/editPuppy', puppy);
+  },
 
   // delete a puppy to endpoint /removePuppy/id
-  create(puppy) {
-
-  },
-
-  update(puppy) {
-  
-  },
-
   delete(id) {
- 
+    return http.delete(`/removePuppy/${id}`);
   }
 }

@@ -1,54 +1,60 @@
 <template>
-  <div class="container">
-    <boards-list />
-    <router-view :key="$route.fullPath" class="routerView" />
-  </div>
+  <v-app>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
+
+        <v-img
+          alt="Vuetify Name"
+          class="shrink mt-1 hidden-sm-and-down"
+          contain
+          min-width="100"
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          width="100"
+        />
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Latest Release</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <HelloWorld/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import BoardsList from '@/components/BoardsList';
+import HelloWorld from './components/HelloWorld';
 
 export default {
+  name: 'App',
+
   components: {
-    BoardsList
-  }
+    HelloWorld,
+  },
+
+  data: () => ({
+    //
+  }),
 };
 </script>
-
-<style>
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-}
-.container {
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.routerView {
-  width: 79%;
-  position: absolute;
-  right: 0;
-}
-.btn {
-  display: inline-block;
-  font-weight: 400;
-  color: #212529;
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid transparent;
-  padding: .375rem .75rem;
-  margin-right: 10px;
-  margin-bottom: 5px;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: .25rem;
-  cursor: pointer;
-}
-</style>

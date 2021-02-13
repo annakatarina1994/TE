@@ -48,9 +48,9 @@ public class PuppyJdbcDao implements PuppyDao {
 		String name = result.getString("name");
 		int weight = result.getInt("weight");
 		String gender = result.getString("gender");
-		boolean paper_trained = result.getBoolean("paper_trained");
+		boolean paperTrained = result.getBoolean("paper_trained");
 		String image = result.getString("image");
-		Puppy retrievedPuppy = new Puppy(id, name, weight, gender, paper_trained, image);
+		Puppy retrievedPuppy = new Puppy(id, name, weight, gender, paperTrained, image);
 
 		return retrievedPuppy;
 	}
@@ -66,20 +66,25 @@ public class PuppyJdbcDao implements PuppyDao {
 
 	@Override
 	public void savePuppy(Puppy puppyToSave) {
-		// TODO Auto-generated method stub
-		
+		String sql = "INSERT INTO puppies " +
+				" (name, weight, gender, paper_trained, image) " +
+				"VALUES (?, ?, ?, ?, ?)";
+		template.update(sql, puppyToSave.getName(), puppyToSave.getWeight(), puppyToSave.getGender(), 
+				puppyToSave.isPaperTrained(), puppyToSave.getImage());
 	}
 
 	@Override
 	public void removePuppy(int id) {
-		// TODO Auto-generated method stub
-		
+		String sql = "DELETE FROM puppies WHERE id = ?";
+		template.update(sql, id);
 	}
 
 	@Override
 	public void editPuppy(Puppy puppyToSave) {
-		// TODO Auto-generated method stub
-		
+		String sql = "UPDATE puppies SET name = ?, weight = ?, gender = ?, paper_trained = ? " +
+					"WHERE id = ?";
+		template.update(sql, puppyToSave.getName(), puppyToSave.getWeight(), puppyToSave.getGender(), 
+				puppyToSave.isPaperTrained(), puppyToSave.getId());
 	}
 
 

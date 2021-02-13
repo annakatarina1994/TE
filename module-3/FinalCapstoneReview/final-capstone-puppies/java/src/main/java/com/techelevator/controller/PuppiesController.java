@@ -54,12 +54,28 @@ public class PuppiesController {
 	}
 	
   // indicates this method with handle HTTP Delete requests for the /remove with id of Puppy to retreive
-
+	@DeleteMapping("/removePuppy/{id}")
+	public void removePuppy(@PathVariable int id) {
+		logTimestamp("Adopting a puppy: " + id);
+		thePuppies.removePuppy(id);
+	}
 	
-	  // indicates this method with handle HTTP POST requests for the /newPuppy
-
-  // indicates this method with handle HTTP POST requests for the /newPuppy
-
+	// indicates this method with handle HTTP POST requests for the /newPuppy
+	@PostMapping("/newPuppy")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void addNewPuppy(@RequestBody Puppy puppy) {
+		logTimestamp("Adding new puppy to database");
+		thePuppies.savePuppy(puppy);
+	}
+	
+	
+  // indicates this method with handle HTTP PUT requests for the /newPuppy
+	@PutMapping("/editPuppy")
+	public void editPuppy(@RequestBody Puppy puppy) {
+		logTimestamp("Editing a puppy " + puppy.getId());
+		thePuppies.editPuppy(puppy);
+		
+	}
 	
 	
 	static void logTimestamp(String msg) {    // log timestamp of request to Console

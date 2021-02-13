@@ -1,74 +1,62 @@
 <template>
-  <div id="app" class="main">
-    <h1>Product Reviews for {{ $store.state.name }}</h1>
-    <p class="description">{{ $store.state.description }}</p>
-    <div class="well-display">
-      <average-summary />
-      <star-summary rating="1" />
-      <star-summary rating="2" />
-      <star-summary rating="3" />
-      <star-summary rating="4" />
-      <star-summary rating="5" />
-    </div>
-    <add-review />
-    <!-- <review-list /> -->
-    <review-table />
-  </div>
+  <v-app>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
+
+        <v-img
+          alt="Vuetify Name"
+          class="shrink mt-1 hidden-sm-and-down"
+          contain
+          min-width="100"
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          width="100"
+        />
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Latest Release</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <HelloWorld/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import AverageSummary from "./components/AverageSummary.vue";
-import StarSummary from "./components/StarSummary.vue";
-import AddReview from "./components/AddReview.vue";
-// import ReviewList from "./components/ReviewList.vue";
-import ReviewTable from "./components/ReviewTable.vue";
+import HelloWorld from './components/HelloWorld';
+import ReviewTable from './components/ReviewTable';
 
 export default {
-  name: "app",
+  name: 'App',
+
   components: {
-    AverageSummary,
-    StarSummary,
-    AddReview,
-    // ReviewList
+    HelloWorld,
     ReviewTable
-  }
+  },
+
+  data: () => ({
+    //
+  }),
 };
 </script>
-
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  max-width: 800px;
-  margin: 60px auto 0 auto;
-}
-div.main {
-  margin: 1rem 0;
-}
-div.main div.well-display {
-  display: flex;
-  justify-content: space-around;
-}
-
-div.main div.well-display div.well {
-  display: inline-block;
-  width: 15%;
-  border: 1px black solid;
-  border-radius: 6px;
-  text-align: center;
-  margin: 0.25rem;
-}
-
-div.main div.well-display div.well span.amount {
-  color: darkslategray;
-  display: block;
-  font-size: 2.5rem;
-}
-
-div.main div.well-display div.well {
-  cursor: pointer;
-}
-</style>

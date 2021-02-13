@@ -42,12 +42,13 @@ export default {
   methods: {
     updatePuppy() {
       const newPup = {
-        pupId: this.$route.params.id,
+        id: this.$route.params.id,
         name: this.puppy.name,
         weight: this.puppy.weight,
         gender: this.puppy.gender,
         paperTrained: this.puppy.paperTrained,
       };
+
       puppyService
         .update(newPup)
         .then((response) => {

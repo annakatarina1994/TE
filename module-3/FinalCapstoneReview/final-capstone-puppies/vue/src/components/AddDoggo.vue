@@ -46,7 +46,6 @@ export default {
         .list()
         .then((newImage) => {
           this.pupImage = newImage.data;
-          console.log(this.pupImage);
 
           const newPuppy = {
             name: this.puppy.name,

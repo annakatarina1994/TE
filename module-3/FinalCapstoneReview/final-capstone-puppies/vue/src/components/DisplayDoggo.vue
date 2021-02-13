@@ -48,6 +48,6 @@ export default {
 .dogs {
   margin: 20px;
   width: 20%;
-  background-color: cornflowerblue;
+  background-color: rgb(126, 241, 207);
 }
 </style>`
